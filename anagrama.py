@@ -23,7 +23,11 @@ Seu programa deve produzir uma única linha, contendo um único caractere, que d
 #   - nessa funcao existira um loop que ira percorrer char por char de duas strings
 #   - eh feita a chamada da funcao para contar a qtd de letras presentes na palavra para cada palavra
 #   - se a qtd de letras de uma mesma letra presente nas duas palavras forem iguais, entao continua o loop, se nao sai
-#   - se percorrer a palavra inteira e variavel ''iguais'' nao for alterada, entao as palavras sao anagramas
+#   - se percorrer a palavra inteira e variavel ''iguais'' nao for alterada, entao as palavras sao anagramas]
+
+# OBS: a logica poderia ser simlificada simplemsnete usando a funcao find() para achar um caractere, assim a funcao cont_letra
+#nao precisaria existir
+
 
 
 # conta quantas letras existem em uma palavra
