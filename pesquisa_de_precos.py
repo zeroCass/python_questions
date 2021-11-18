@@ -19,10 +19,10 @@ Para cada estado em que o álcool é vantajoso seu programa deve produzir uma li
 na ordem em que os estados aparecem na entrada. Se em nenhum estado o álcool é vantajoso, seu programa deve imprimir uma linha contendo somente o caratere '*' (asterisco).
 """
 
-#logica:
-#em um loop, receber os inputs referentes ao estado e o valor do alcool/gasolina correspondente
-#x = 70% do valor da gasolina, entao deve-se verificar se o valor do alcool eh no maximo igual a x
-#se sim, entao adiciona 
+# logica:
+# em um loop, receber os inputs referentes ao estado e o valor do alcool/gasolina correspondente
+# x = 70% do valor da gasolina, entao deve-se verificar se o valor do alcool eh no maximo igual a x
+# se sim, entao adiciona 
 
 
 estados = []
