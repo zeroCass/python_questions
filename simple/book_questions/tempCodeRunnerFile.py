@@ -1,0 +1,2 @@
+
+    text = lists[idx]
