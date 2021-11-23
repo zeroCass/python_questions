@@ -1,3 +1,21 @@
+'''
+Livro - Automatize Tarefas Macantes com Python by Al Sweigart
+Capitulo 5
+
+Projeto Pratico - Função de “lista para dicionário” para o inventário de jogo de
+fantasia
+
+Suponha que os despojos de um dragão vencido seja representado como uma
+lista de strings como esta:
+dragonLoot = ['gold coin', 'dagger', 'gold coin', 'gold coin', 'ruby']
+Crie uma função chamada addToInventory(inventory, addedItems), em que
+o parâmetro inventory seja um dicionário representando o inventário do
+jogador (como no projeto anterior) e o parâmetro addedItems seja uma lista
+como dragonLoot. A função addToInventory() deve retornar um dicionário
+que represente o inventário atualizado.
+'''
+
+
 # python - automatizando coisas livro
 # exercicios de dicionario
 

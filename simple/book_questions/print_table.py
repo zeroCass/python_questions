@@ -1,4 +1,9 @@
 '''
+Livro - Automatize Tarefas Macantes com Python by Al Sweigart
+Capitulo 6
+
+Projeto Pratico - Exibicao de tabela
+
 Crie uma função chamada printTable() que receba uma lista de listas de
 strings e a exiba em uma tabela bem organizada, com cada coluna justificada
 à direita. Suponha que todas as listas internas contenham o mesmo número de

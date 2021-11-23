@@ -1,3 +1,11 @@
+'''
+Livro - Automatize Tarefas Macantes com Python by Al Sweigart
+Capitulo 6
+
+Projeto: Repositório de senhas
+'''
+
+
 # pw.py - Um programa para respositório de senhas que não é seguro
 
 

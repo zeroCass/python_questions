@@ -1,4 +1,10 @@
 '''
+Livro - Automatize Tarefas Macantes com Python by Al Sweigart
+Capitulo 6
+
+Projeto: Adicionando marcadores na marcação da
+Wiki
+
 O script bulletPointAdder.py obterá o texto do clipboard, adicionará um
 asterisco e um espaço no início de cada linha e, em seguida, colará esse novo
 texto no clipboard.
