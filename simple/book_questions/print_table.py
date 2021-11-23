@@ -15,16 +15,33 @@ Sua função printTable() exibirá o seguinte:
     banana David goose
 '''
 
-tableData = [['apples', 'oranges', 'cherries', 'banana'],
-['Alice', 'Bob', 'Carol', 'David'],
-['dogs', 'cats', 'moose', 'goose']]
+import sys
+
+def print_table(table):
+    # como sugerido no livro, col_width eh um array inicializado em 0 que indica o tamanho da maior palavra
+    # em cada coluna. Com base no exeplo dado, iremos considerar a tabela de dimensao x,y como sendo y,x
+    # ou seja, se antes era 3x4, agora sera 4x3, contando 3 colunas
+    col_width = [0] * len(table)
+
+    # este for serve para percorrer a tabela de maneira a respeitar a inversao comentada acima
+    # entao para cada coluna da tabela, sera verificado qual a maior palavra e entao sera armazenado em col_with
+    for y in range(len(table)):
+        for x in range(len(table[0])):
+            if len(table[y][x]) > col_width[y]:
+                col_width[y] = len(table[y][x])
+
+    # de fato agora a tabela sera printada e justificada a direita com base no tamanho 
+    # da maior palavra da coluna
+    for x in range(len(table[0])):
+        for y in range(len(table)):
+            print(table[y][x].rjust(col_width[y]), end=' ')
+        print() 
 
 
-table_format = ''
-for i in range(len(tableData)):
-    col_width = [0] * len(tableData)
-    print(col_width)
-    for j in range(len(tableData[i])):
-        table_format += tableData[i][j].rjust(col_width)
 
-print(table_format)
+
+
+table_data = [['apples', 'oranges', 'cherries', 'banana'],
+             ['Alice', 'Bob', 'Carol', 'David'],
+             ['dogs', 'cats', 'moose', 'goose']]
+print_table(table_data)
