@@ -44,3 +44,18 @@ print(mo1.group())
 mo1 = heroRegex.search('Tina Fey and Batman.')
 print(mo1.group())
 print()
+
+
+
+
+# findall() - metodo
+# quando chamado em uma ragex sem grupos - retorna uma lista de strings correspondeste
+# quando chamado em uma ragex com grupos - retorna uma lista de tuples com os grupos correspondentes
+
+phoneNumRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d') # não tem nenhum grupo
+print(phoneNumRegex.findall('Cell: 415-555-9999 Work: 212-555-0000'))
+
+phoneNumRegex = re.compile(r'(\d\d\d)-(\d\d\d)-(\d\d\d\d)') # tem grupos
+print(phoneNumRegex.findall('Cell: 415-555-9999 Work: 212-555-0000'))
+print()
+
