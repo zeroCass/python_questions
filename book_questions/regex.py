@@ -43,6 +43,9 @@ print(mo1.group())
 
 mo1 = heroRegex.search('Tina Fey and Batman.')
 print(mo1.group())
+
+heroRegex = re.compile(r'Bat(man|woman|mobile)')
+print(heroRegex.findall('Batmobile lost a wheel. So, Batman wont find Batwoman'))
 print()
 
 
@@ -59,3 +62,24 @@ phoneNumRegex = re.compile(r'(\d\d\d)-(\d\d\d)-(\d\d\d\d)') # tem grupos
 print(phoneNumRegex.findall('Cell: 415-555-9999 Work: 212-555-0000'))
 print()
 
+
+# ponto de interrgoacao - ocorrencia opicial
+# quando um trecho pode ou nao esta contido, e o resultado obtido devera ser considerado de qualquer jeito
+# exemplo Bat(wo)?man - ira retornar se batman ou batwoman esta no texto
+# entao o grupo (wo)? eh um grupo opcional podendo ou nao esta preesnte
+
+batRegex = re.compile(r'(Bat|bat)(wo)?man')
+print(batRegex.search('The adventures of batman').group())
+print(batRegex.search('The adventures of Batwoman').group())
+print()
+
+
+# asteriscos - ocorrencia de zero ou mais
+#
+
+
+
+
+vogals = re.compile(r'[aeiouAEIOU]')
+print(vogals.findall('Ola senhoras e senhores'))
+print()
