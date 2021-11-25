@@ -74,12 +74,68 @@ print(batRegex.search('The adventures of Batwoman').group())
 print()
 
 
-# asteriscos - ocorrencia de zero ou mais
-#
+# asteriscos - ocorrencia de zero ou mais do grupo anterior
+batRegex = re.compile(r'bat(wo)*man', re.IGNORECASE)
+print(batRegex.search('Batwowowoman is a woman').group())
+print()
+
+# + - ocorrencia de um ou mais do grupo anterior
+batRegex = re.compile(r'bat(wo)+man', re.IGNORECASE)
+print(batRegex.search('BATWOWOMAN, The Adventure').group())
+print()
 
 
-
-
+# grupos/itervalos personalizados usando []
 vogals = re.compile(r'[aeiouAEIOU]')
 print(vogals.findall('Ola senhoras e senhores'))
 print()
+
+
+# {} - repeticoes especificas do grupo anterior
+# pode-se usar intervalos para especificar a quantiade:
+#   {3,} - tem que ter no minimo 3 ou varios
+#   {,3} - pode ter nenhum ou no maximo 3
+#   {3, 5} - precisa ter entre 3 e 5
+# *** OBS: Eh importante menconar que por default a regex irá mostrar a maior ocorrencia (greed - guloso)
+#           para que isso nao aconteca, eh necessario colocar um ? apos o grupo '(Ha){3,5}?'
+ha_regex = re.compile('(Ha){1,}?', re.IGNORECASE)
+print(ha_regex.search('HahaHAHA, estou rindo ein').group())
+print()
+
+
+# ^ e $ - ^ especifica que a palavra deve começar com aquela ocorrencia, em quanto que $ indica que string irá terminar
+# com um padrao especifico
+whole_string_is_num = re.compile(r'\d+$')
+#a string devera ser somente numeros
+print(whole_string_is_num.search('20021'))
+print() 
+
+
+#. - coringa -> corresponde a qualquer caractere que nao seja quebra de linha
+at_regex = re.compile(r'.at')
+print(at_regex.findall('The cat in the hat sat on the flat mat.'))
+print() 
+
+# metodo re.DOTALL considera o caractere de quebra de linha
+new_line_regex = re.compile('.*', re.DOTALL)
+print(new_line_regex.search('Serve the public trust.\nProtect the innocent.\nUphold the law.').group())
+print() 
+
+# metodo sub - serve para sibstiuir a ocorrencia especifica pela string passada como param
+agent_name_regex = re.compile(r'Agent (\w)(\w)\w*')
+print(agent_name_regex.sub(r'\1\2***','Agent Alice told Agent Carol that Agent Eve knew Agent Bob was a double agent.'))
+print()
+
+# ignorando espacos e comentarios para facilitar a leitura da regex -> re.VERBOSE
+phoneRegex = re.compile(r'((\d{3}|\(\d{3}\))?(\s|-|\.)?\d{3}(\s|-|\.)\d{4}(\s*(ext|x|ext.)\s*\d{2,5})?)')
+phoneRegex = re.compile(r'''(
+    (\d{3}|\(\d{3}\))?              # codigo area pode der ddd ou (ddd)
+    (\s|-|\.)?                      # separador pode ser espaco em branco ou - ou .
+    (\d{3})                         # primeiros 3 digitos
+    (\s|-|\.)?                      # separador pode ser espaco em branco ou - ou .
+    (\d{4})                         # ultimos 3 digitos
+    (\s*(ext|x|ext.)\s*\d{2,5})?    # extensao
+)''', re.VERBOSE)
+print(phoneRegex.search('(123).456.7890 x 000').group())
+
+# combinar IGNORECASE, DOTALL e VERBOSE ->  re.compile(re.IGNORECASE | re.DOTALL | re.VERBOSE)
