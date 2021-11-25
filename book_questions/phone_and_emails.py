@@ -102,20 +102,29 @@ def emails_list (text: str) -> list:
 
 def main ():
     if len(sys.argv) < 2:
+        # get the current content on the buffer (ctrl + c)
         text = pyperclip.paste()
+        # extract the phones numbers
         phones_list = phone_list(text)
 
+        # format the text with phone numbers
         phones_text = 'Phones:\n'
         phones_text += '\n'.join(phones_list)
 
+        # extract the emails from the text
         email_list = emails_list(text)
+        # firnat the text with emails
         emails_text = 'Emails:\n'
         emails_text += '\n'.join(email_list)
 
+        # concat the two texts, phones and emails
         final_text = phones_text + '\n\n' + emails_text
+        # put on the buffer for past (ctrl + v)
         pyperclip.copy(final_text)
 
     else:
+        sys.exit()
+        # the feature is not implemented yet
         file = get_file(sys.argv[1])
         try:
             with open(file) as file:
