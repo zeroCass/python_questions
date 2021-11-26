@@ -16,10 +16,10 @@ selecionar todo o texto, CTRL-C para copiá-lo para o clipboard e então
 executar o seu programa. Ele poderia substituir o texto no clipboard somente
 pelos números de telefone e pelos endereços de email encontrados.
 
-Adicional (next_feature):
-É possivel passar um arquivo .txt para o programa.
+Adicional:
+É possivel passar um arquivo .txt para o programa como argumento na hora de executar.
 Ele irá procurar esse arquivo e extrair os dados requiridos. Posteriormente, irá gerar um novo
-arquivo .txt contendo os dado extraidos
+arquivo phones_emails.txt contendo os dado extraidos
 '''
 
 
