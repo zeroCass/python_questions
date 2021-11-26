@@ -64,15 +64,17 @@ def phone_list (text: str) -> list:
         (\d{4})                         # ultimos 3 digitos
         (\s*(ext|x|ext.)\s*\d{2,5})?    # extensao
     )''', re.VERBOSE)
-    # seach for phones number in the text
-    phone_l = phones.findall(text)
 
+    # seach for phones number in the text
     # the return is a list of tuples
     # so get the first element in the tuple wich is the complete numbe
     # and put in the list
-    new_list = []
-    for tuple in phone_l:
-        new_list.append(tuple[0])
+    new_list = ['Phones:']
+    for tuple in phones.findall(text):
+        phones = '-'.join([tuple[1][-2:],tuple[3],tuple[5]])
+        if tuple[7] != '':
+            phones += 'x' + tuple[7]
+        new_list.append(phones)
     return new_list
 
 
@@ -93,7 +95,7 @@ def emails_list (text: str) -> list:
     # the return is a list of tuples
     # so get the first element in the tuple wich is the complete numbe
     # and put in the list
-    new_list = []
+    new_list = ['Emails:']
     for tuple in emails_l:
         new_list.append(tuple[0])
     return new_list
@@ -104,36 +106,43 @@ def main ():
     if len(sys.argv) < 2:
         # get the current content on the buffer (ctrl + c)
         text = pyperclip.paste()
-        # extract the phones numbers
-        phones_list = phone_list(text)
 
         # format the text with phone numbers
-        phones_text = 'Phones:\n'
-        phones_text += '\n'.join(phones_list)
+        phones_text = '\n'.join(phone_list(text))
 
-        # extract the emails from the text
-        email_list = emails_list(text)
-        # firnat the text with emails
-        emails_text = 'Emails:\n'
-        emails_text += '\n'.join(email_list)
+        # format the text with emails
+        emails_text = '\n'.join(emails_list(text))
 
         # concat the two texts, phones and emails
-        final_text = phones_text + '\n\n' + emails_text
+        final_text = '\n\n'.join([phones_text, emails_text])
+
         # put on the buffer for past (ctrl + v)
         pyperclip.copy(final_text)
 
     else:
-        sys.exit()
+        #sys.exit()
         # the feature is not implemented yet
-        file = get_file(sys.argv[1])
+        file_path = get_file(sys.argv[1])
         try:
-            with open(file) as file:
-                print(file.read())
+            with open(file_path) as file:
+                text = file.read()
+                # format the text with phone numbers
+                phones_text = '\n'.join(phone_list(text))
+
+                # format the text with emails
+                emails_text = '\n'.join(emails_list(text))
+
+                # concat the two texts, phones and emails
+                final_text = '\n\n'.join([phones_text, emails_text])
         except Exception as e:
             print(e)
-    
 
-
+        try:
+            with open(os.path.join(os.path.dirname(os.path.abspath(file_path)),
+            'phones_emails.txt'), 'w') as file:
+                file.write(final_text)
+        except Exception as e:
+            print(e)
 
 if __name__ == '__main__':
     main()
