@@ -11,3 +11,13 @@ a remoção será feita, os caracteres de espaço em branco serão removidos do
 início e do fim da string. Caso contrário, os caracteres especificados no
 segundo argumento da função serão removidos da string.
 '''
+import re
+
+def strip_regex (string,to_strip=None):
+    if to_strip == None:
+        to_strip = '^(\s+)|(\s+)$'
+    return re.sub(to_strip, '', string)
+
+
+print(strip_regex(' ola mundo '))
+print(strip_regex(' ola mundo ', 'o'))
