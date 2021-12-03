@@ -56,7 +56,7 @@ else:
         for phrase in range(len(all_phrases)):
             # tamanho de palavras a serem subsituidas
             total_finders = len(regex.findall(all_phrases[phrase]))
-            # une as frases
+            # pega a frase atual para modificar
             current_phrase = all_phrases[phrase]
 
             for i in range(total_finders):
