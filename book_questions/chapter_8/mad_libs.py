@@ -14,19 +14,27 @@ substitua.
 
 import sys, os, re
 
+# verifica se o argumento tem o nome do arquivo
 if len(sys.argv) < 2:
     sys.exit(1)
 else:
     text_file = sys.argv[1]
+    # verifica se o arquivo eh .txt
     if not '.txt' in text_file:
         print('Error: not a text file')
         sys.exit()
     
+    # verifica se o arquivo existe
     if not os.path.exists(text_file):
         print('File doesnt exists')
         sys.exit()
 
+    # cria a regex contendo os grupos com as possbilidades
     regex = re.compile('(ADJECTIVE)|(NOUN)|(ADVERB)|(VERB)')
+
+    # abre e ler o arquivo, entao faz os tratametnos
+    # obj: achar todas as oracoes (separadas por ponto) do arquivo, para exibir uma frase que faca sentido
+    # para entao o usurario escolher qual palavra se encaixa melhor
     with open(text_file,'r') as file:
         file_content = file.read()
 
@@ -43,9 +51,30 @@ else:
             all_phrases.append(file_content[begin_phrase:all_dots[dot]].strip().replace('\n', ' '))
             # atualiza o inicio da frase como sendo a posicao do ponto + 1
             begin_phrase = all_dots[dot] + 1
+        
+        new_phrase = ''
+        for phrase in range(len(all_phrases)):
+            # tamanho de palavras a serem subsituidas
+            total_finders = len(regex.findall(all_phrases[phrase]))
+            # une as frases
+            new_phrase = ''.join([new_phrase, all_phrases[phrase]])
 
-        # count = 1
-        # for line in file:
-        #     if regex.search(line):
-        #         print('Line.%s: %s' % (count, line))
-        #     count += 1
+            for i in range(total_finders):
+
+                print(f'{new_phrase}')
+                # procura a primeira ocorrencia 
+                match = regex.search(new_phrase).group()
+                # pede para o usuario inserer o que deseja colocar no lugar
+                new_word = input(str((f'Enter a(n) {match}:\n')))
+                # substitue a palavra antiga pela palavra atual
+                new_phrase = re.sub(match, new_word, new_phrase)
+
+            new_phrase += '. '
+                 
+        print(new_phrase)
+        #sub = re.sub('.txt','',text_file)
+        sub = text_file.strip('.txt')
+        # cria novo arquivo e salva ele
+        new_txt = open(f'{sub}_new.txt','w')
+        new_txt.write(new_phrase)
+        new_txt.close()
