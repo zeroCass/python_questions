@@ -48,33 +48,35 @@ else:
         begin_phrase = 0
         for dot in range(len(all_dots)):
             # adiciona uma substring da posicao do inicio da frase ate o proximo ponto
-            all_phrases.append(file_content[begin_phrase:all_dots[dot]].strip().replace('\n', ' '))
+            all_phrases.append(file_content[begin_phrase:all_dots[dot]].strip())
             # atualiza o inicio da frase como sendo a posicao do ponto + 1
             begin_phrase = all_dots[dot] + 1
         
-        new_phrase = ''
+        new_phrase = [] 
         for phrase in range(len(all_phrases)):
             # tamanho de palavras a serem subsituidas
             total_finders = len(regex.findall(all_phrases[phrase]))
             # une as frases
-            new_phrase = ''.join([new_phrase, all_phrases[phrase]])
+            current_phrase = all_phrases[phrase]
 
             for i in range(total_finders):
 
-                print(f'{new_phrase}')
+                print(f'{current_phrase}')
                 # procura a primeira ocorrencia 
-                match = regex.search(new_phrase).group()
+                match = regex.search(current_phrase).group()
                 # pede para o usuario inserer o que deseja colocar no lugar
-                new_word = input(str((f'Enter a(n) {match}:\n')))
+                new_word = input(str((f'\nEnter a(n) {match}:\n')))
                 # substitue a palavra antiga pela palavra atual
-                new_phrase = re.sub(match, new_word, new_phrase)
+                current_phrase = re.sub(match, new_word, current_phrase)
 
-            new_phrase += '. '
+            current_phrase += '. '
+            new_phrase.append(current_phrase)
                  
-        print(new_phrase)
         #sub = re.sub('.txt','',text_file)
         sub = text_file.strip('.txt')
         # cria novo arquivo e salva ele
         new_txt = open(f'{sub}_new.txt','w')
-        new_txt.write(new_phrase)
+        for phrase in new_phrase:
+            new_txt.write(phrase)
+            print(phrase)
         new_txt.close()
