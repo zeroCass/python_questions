@@ -16,3 +16,11 @@ dir2delete = os.path.join(dir, 'provas_backup')
 if os.path.exists(dir2delete):
     shutil.rmtree(dir2delete)
     print(f'A pasta {dir2delete} foi deleteada')
+
+file2trash = os.path.join(dir, 'mad_copy.txt')
+if os.path.exists(file2trash):
+    send2trash.send2trash(file2trash)
+    print(f'Arquivo/Pasta foi movido para a lixeira')
+
+
+
