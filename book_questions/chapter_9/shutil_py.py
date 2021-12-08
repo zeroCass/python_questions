@@ -1,6 +1,6 @@
 
 
-import shutil, os
+import shutil, os, sys
 
 # change diretory
 os.chdir('c:\\')
@@ -12,7 +12,8 @@ print(os.getcwd())
 
 # go to the previos path and get in chapter_8 folder
 chapter_8 = (os.path.join(os.path.abspath('..'), 'chapter_8'))
-
+#print(chapter_8)
+#sys.exit()
 
 # shitil.copy -> copia UM arquivo dado um path para outro path
 file_name = 'mad_libs.txt'
