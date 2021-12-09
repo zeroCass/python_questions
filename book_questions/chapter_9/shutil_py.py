@@ -1,4 +1,9 @@
+'''
+Capitulo 9
 
+Copiando/Movendo arquivos usando modulo:
+shutil
+'''
 
 import shutil, os, sys
 

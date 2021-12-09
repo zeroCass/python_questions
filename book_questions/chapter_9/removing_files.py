@@ -1,5 +1,12 @@
-import os, shutil ,send2trash
+'''
+Capitulo 9
 
+Removendo arquivos comdulo shutil
+Movendo arquivos para lixeira com modulo send2trash
+'''
+
+
+import os, shutil ,send2trash
 
 dir = os.path.dirname(os.path.abspath(__file__))
 
