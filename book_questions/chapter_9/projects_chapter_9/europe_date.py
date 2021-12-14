@@ -59,7 +59,8 @@ for root, sub_dir, files in os.walk(os.getcwd()):
             europe_format = mo.group(1) + mo.group(4) + '-' + mo.group(2) + '-' + mo.group(6) + mo.group(8)
             print(europe_format)
 
-            print(type(file))
+            # get the abs file (root + file path)
+            print(os.path.abspath(os.path.join(root, file)))
 
             #file_dir = os.path.realpath(file)[:len(mo.group())]
             # print(file_dir)
