@@ -28,29 +28,42 @@ código como renameDates.py.
 
 
 import os, re
+import shutil
 
 # muda o diretorio atual para o dir do current file
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-europe_format = re.compile(r'''(
-    ((0{1}[1-9]{1})|(1{1}[0-2]{1}) )
-    (\s|-|\.)+
-    (\d{2})
-    (\s|-|\.)+
-    (\d{4})
-    )''', re.VERBOSE)
+american_format = re.compile(r'''^(.*?)   # todo texto antes
+    ((0|1)?\d)- # um ou dois dígitos para o mês
+    ((0|1|2|3)?\d)- # um ou dois dígitos para o dia
+    ((19|20)\d\d) # quatro dígitos para o ano
+    (.*?)$''', re.VERBOSE)
 
-# emails = re.compile(r'''(
-#         ([a-zA-Z0-9._%+-]+)             # nome de usuario
-#         @                               # simbolo @ obrigatorio
-#         ([a-zA-Z0-9._%+-]+)             # dominio
-#         (\.[a-zA-Z]{2,5})               # ponto seguindo por mais caracteres
-#         ((\.[a-zA-Z]{2,5}))?
-#         ((\.[a-zA-Z]{2,5}))?
-#     )''', re.VERBOSE)
 
-print(europe_format.findall('10-15-2000'))
+#print(american_format.search('12-31-2000').group())
 
-# for root, sub_dir, files in os.walk(os.getcwd()):
-#     for file in files:
-#         print(europe_format.search(file).group())
+
+for root, sub_dir, files in os.walk(os.getcwd()):
+    for file in files:
+        #print(f'sub-folder: {sub_dir}')
+        # cria objet match para a regex
+        mo = american_format.search(file)
+        # verifica se esse objeto eh valido
+        if mo:
+            # cria string que contem a data no novo formato usado os grupos da regex
+            # grupo 1 - parte anterior a data
+            # grupo 2 - dia
+            # grupo 4 - mes
+            # grupo 6 - ano
+            # grupo 7 - parte posterior a data 
+            europe_format = mo.group(1) + mo.group(4) + '-' + mo.group(2) + '-' + mo.group(6) + mo.group(8)
+            print(europe_format)
+
+            print(type(file))
+
+            #file_dir = os.path.realpath(file)[:len(mo.group())]
+            # print(file_dir)
+            # american_filename = os.path.join(file_dir, file)
+            # europe_filename = os.path.join(file_dir, europe_format)
+            
+            #shutil.move(os.path.join(os.getcwd(),file), os.path.join(os.getcwd()))
