@@ -27,6 +27,8 @@ def backup_to_zip(folder):
             raise Exception('Invalid path folder')
     except Exception as inst:
         print(inst)
+        sys.exit()
+    
     
     os.chdir(os.path.dirname(os.path.abspath(folder)))
 

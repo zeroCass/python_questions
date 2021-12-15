@@ -22,11 +22,8 @@ def useless_files(folder):
     '''
     target_size = 100000
 
-    try:
-        if not os.path.isabs(folder):
-            raise Exception('Invalid path folder')
-    except Exception as inst:
-        print(inst)
+    if not os.path.isabs(folder):
+        raise Exception('Invalid path folder')
 
     for root, sub_dir, files in os.walk(folder):
         for file in files:
