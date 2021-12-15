@@ -34,6 +34,11 @@ except FileExistsError:
 
 
 # move -> move/renomeia um arquivo de um lugar para outro
+#  shuti.move(origi, destino)
 file_name = 'mad_libs.txt'
 if not os.path.exists(os.path.join(os.getcwd(), 'mad_copy.txt')):
     shutil.move(os.path.join(chapter_8, file_name), os.path.join(os.getcwd(), 'mad_copy.txt'))
+
+# OBS: se o destino for uma pasta, o arquivo sera movido.
+#           caso o destina contenha um arquivo com o msm nome, este será sobrescrito
+#           se no destino conter um nome de arquivo, este será movido e renomeado 

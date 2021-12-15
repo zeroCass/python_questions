@@ -57,14 +57,9 @@ for root, sub_dir, files in os.walk(os.getcwd()):
             # grupo 6 - ano
             # grupo 7 - parte posterior a data 
             europe_format = mo.group(1) + mo.group(4) + '-' + mo.group(2) + '-' + mo.group(6) + mo.group(8)
-            print(europe_format)
-
             # get the abs file (root + file path)
-            print(os.path.abspath(os.path.join(root, file)))
+            american_filename = os.path.abspath(os.path.join(root, file))
+            europe_filename = os.path.abspath(os.path.join(root, europe_format))
+            print('Renaming %s to %s' % (os.path.basename(american_filename), os.path.basename(europe_filename)))
 
-            #file_dir = os.path.realpath(file)[:len(mo.group())]
-            # print(file_dir)
-            # american_filename = os.path.join(file_dir, file)
-            # europe_filename = os.path.join(file_dir, europe_format)
-            
-            #shutil.move(os.path.join(os.getcwd(),file), os.path.join(os.getcwd()))
+            shutil.move(american_filename, europe_filename)
