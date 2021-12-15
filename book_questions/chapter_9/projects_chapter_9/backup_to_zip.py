@@ -57,7 +57,7 @@ def backup_to_zip(folder):
 
 
 def main():
-    if len(sys.argv) < 1:
+    if len(sys.argv) <= 1:
         folder = r'C:\Users\05694223101\Documents\python\python issues\book_questions\chapter_9'
     else:
         # pega o caminho passado em arg
