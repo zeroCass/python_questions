@@ -6,23 +6,21 @@ logging.disable(logging.CRITICAL)
 
 guess = ''
 toss = ' '
+toss_option = {0: 'tails', 1:'heads'}
 while guess != toss:
     guess = input('\nGuess the coin toss! Enter heads or tails:\n')
-    toss = random.randint(0, 1) # 0 é coroa (tails), 1 é cara (heads)
-    toss = {0: 'tails', 1:'heads'}[toss]
+    toss = toss_option[random.randint(0,1)]
     logging.debug('toss: %s' % toss)
     
     if toss == guess:
         print('You got it!')
     else:
-        print('Nope! Guess again!')
+        guess = input('Nope! Guess again!')
 
-    guess = input('Gues the coin toss! Enter heads or tails:\n')
+        logging.debug('toss: %s' % toss)
+        logging.debug('guess: %s' % guess)
 
-    logging.debug('toss: %s' % toss)
-    logging.debug('guess: %s' % guess)
-
-    if toss == guess:
-        print('You got it!')
-    else:
-        print('Nope. You are really bad at this game.')
+        if toss == guess:
+            print('You got it!')
+        else:
+            print('Nope. You are really bad at this game.')
