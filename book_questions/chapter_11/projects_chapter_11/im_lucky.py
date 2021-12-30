@@ -3,7 +3,6 @@ import webbrowser
 import requests
 import sys
 import os
-import time
 
 
 
@@ -18,13 +17,12 @@ def main():
     }
 
     res = requests.get('https://www.google.com/search', headers=headers, params={'q': ''.join(sys.argv[1:])})
-    #res = requests.get('https://www.youtube.com/results?search_query=' + '+'.join(sys.argv[1:]))
     res.raise_for_status()
-    # if res.status_code == 429:
-    #     time.sleep(int(res.headers["Retry-After"]))
 
-    for link in bs4.BeautifulSoup(res.text, 'html.parser').select('a'):
-        print(link.get('href'))
+    for element in bs4.BeautifulSoup(res.text, 'html.parser').select('div.yuRUbf a'):
+        link = element.get('href')
+        if 'webcache' not in link and 'search' not in link and '#' not in link:
+            webbrowser.open(link)
 
 if __name__ == '__main__':
     main()
