@@ -19,10 +19,23 @@ def main():
     res = requests.get('https://www.google.com/search', headers=headers, params={'q': ''.join(sys.argv[1:])})
     res.raise_for_status()
 
-    for element in bs4.BeautifulSoup(res.text, 'html.parser').select('div.yuRUbf a'):
-        link = element.get('href')
-        if 'webcache' not in link and 'search' not in link and '#' not in link:
+    # versao anterior
+
+    # for element in bs4.BeautifulSoup(res.text, 'html.parser').select('div.yuRUbf a'):
+    #     link = element.get('href')
+    #     if 'webcache' not in link and 'search' not in link and '#' not in link:
+    #         webbrowser.open(link)
+
+    # nova versao
+    # obj beautiful soup contendo o conteudo html da pagina
+    page = bs4.BeautifulSoup(res.text, 'html.parser')
+    # realiza uma pesquisa no html para encontrar todas as tags div com a class yuRUbf
+    for element in page.find_all('div', class_='yuRUbf'):
+        # se a tag a da div existir e tiver um atributo chamado href entra na condicao
+        if element.a['href']:
+            link = element.a['href']
             webbrowser.open(link)
+        
 
 if __name__ == '__main__':
     main()
