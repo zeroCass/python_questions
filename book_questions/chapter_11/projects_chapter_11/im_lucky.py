@@ -31,6 +31,7 @@ def main():
     page = bs4.BeautifulSoup(res.text, 'html.parser')
     # realiza uma pesquisa no html para encontrar todas as tags div com a class yuRUbf
     for element in page.find_all('div', class_='yuRUbf'):
+        # eh possivel usar find_all(attrs={'class': 'yuRUbf'})
         # se a tag a da div existir e tiver um atributo chamado href entra na condicao
         if element.a['href']:
             link = element.a['href']
