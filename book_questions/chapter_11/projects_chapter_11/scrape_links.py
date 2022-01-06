@@ -1,9 +1,55 @@
+
+'''
+Capitulo 11
+
+Projeto: Pesquisa “Estou com sorte” no Google
+
+Sempre que pesquiso um assunto no Google, não olho apenas um resultado da
+pesquisa de cada vez. Ao clicar em um link de resultado da pesquisa com o
+botão do meio do mouse (ou clicar enquanto CTRL estiver pressionado), abro
+os primeiros links em uma porção de novas abas para ler depois. Faço
+pesquisas no Google com tanta frequência que esse fluxo de trabalho – abrir
+meu navegador, pesquisar um assunto e clicar em diversos links, um por um,
+com o botão do meio do mouse – é tedioso. Seria interessante se eu pudesse
+simplesmente digitar um termo de pesquisa na linha de comando e fazer meu
+computador abrir automaticamente um navegador com todos os principais
+resultados da pesquisa em novas abas.
+'''
+
 import bs4
 import webbrowser
 import requests
 import sys
 import os
 
+# versao anterior
+def open_wbpage(res: requests.get):
+    '''
+        recebe um obj request contendo o donwload de uma pagina web
+        abre todos os links obtidos da pagina 
+    '''
+
+    for element in bs4.BeautifulSoup(res.text, 'html.parser').select('div.yuRUbf a'):
+        link = element.get('href')
+        if 'webcache' not in link and 'search' not in link and '#' not in link:
+            webbrowser.open(link)
+
+# nova versao
+def open_webpage(res: requests.get):
+    '''
+        recebe um obj request contendo o donwload de uma pagina web
+        abre todos os links obtidos da pagina 
+    '''
+
+    # obj beautiful soup contendo o conteudo html da pagina
+    page = bs4.BeautifulSoup(res.text, 'html.parser')
+    # realiza uma pesquisa no html para encontrar todas as tags div com a class yuRUbf
+    for element in page.find_all('div', class_='yuRUbf'):
+        # eh possivel usar find_all(attrs={'class': 'yuRUbf'})
+        # se a tag a da div existir e tiver um atributo chamado href entra na condicao
+        if element.a['href']:
+            link = element.a['href']
+            webbrowser.open(link)
 
 
 def main():
@@ -19,24 +65,8 @@ def main():
     res = requests.get('https://www.google.com/search', headers=headers, params={'q': ''.join(sys.argv[1:])})
     res.raise_for_status()
 
-    # versao anterior
-
-    # for element in bs4.BeautifulSoup(res.text, 'html.parser').select('div.yuRUbf a'):
-    #     link = element.get('href')
-    #     if 'webcache' not in link and 'search' not in link and '#' not in link:
-    #         webbrowser.open(link)
-
-    # nova versao
-    # obj beautiful soup contendo o conteudo html da pagina
-    page = bs4.BeautifulSoup(res.text, 'html.parser')
-    # realiza uma pesquisa no html para encontrar todas as tags div com a class yuRUbf
-    for element in page.find_all('div', class_='yuRUbf'):
-        # eh possivel usar find_all(attrs={'class': 'yuRUbf'})
-        # se a tag a da div existir e tiver um atributo chamado href entra na condicao
-        if element.a['href']:
-            link = element.a['href']
-            webbrowser.open(link)
-        
+    #open_wbpage(res)
+    open_webpage(res)  
 
 if __name__ == '__main__':
     main()
