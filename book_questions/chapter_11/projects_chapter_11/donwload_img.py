@@ -22,7 +22,7 @@ import os
 import sys
 
 
-def img_scrape(inicio: int = None, fim:int = None):
+def img_scrape(inicio:str = None, fim:str = None):
     if inicio != None and fim != None and inicio < fim:
         [inicio, fim] = [fim, inicio]
     
@@ -32,6 +32,8 @@ def img_scrape(inicio: int = None, fim:int = None):
 
     if fim == None:
         fim = '#'
+    else:
+        fim += '/'
     
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     os.makedirs('xkcd', exist_ok=True)
@@ -52,9 +54,8 @@ def img_scrape(inicio: int = None, fim:int = None):
             for chunk in img.iter_content(100000):
                 img_file.write(chunk)
 
-
         prev = page.find('a', {'rel': 'prev'})['href']
-        url = 'https://xkcd.com/' + prev
+        url = 'https://xkcd.com/' + prev    
 
 
 def main():
