@@ -16,6 +16,8 @@ with open(os.path.join(os.getcwd(),'parse_html.html')) as file:
 # metodo select(), retorna uma lista contendo todas as tags de um seletor CSS informado pra funcao
 elems = file_soup.select('#author')
 print(elems)
+for elements in elems:
+    print(elements)
 # pega somente o texto contido na tag
 print(elems[0].getText())
 # informa o id e o seu nome
