@@ -2,7 +2,8 @@
 
 import os
 import openpyxl
-from openpyxl.utils import get_column_letter, column_index_from_string
+from openpyxl.utils import get_column_letter
+from openpyxl.utils import column_index_from_string
 
 raiz = os.path.join(os.path.abspath('.'), 'automate_online-materials') 
 
