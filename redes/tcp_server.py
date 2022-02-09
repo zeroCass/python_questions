@@ -1,7 +1,7 @@
 from socket import *
 
 
-host = '192.168.10.1'
+host = 'localhost'
 port = 12000
 
 
