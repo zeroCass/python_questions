@@ -23,9 +23,13 @@ data = input('Input lowercase setence: ')
 client_socket.sendall(str.encode(data))
 
 
-# recebe dados da conexao socket
-last_time = time.time()
-data = client_socket.recv(1024)
-
-time_passed = time.time() - last_time
-print(f'Message: {data.decode()}\nTime passed to recieve data: {time_passed}')
+while True:
+    # recebe dados da conexao socket
+    last_time = time.time()
+    data = client_socket.recv(1024)
+    if not data:
+        break
+    time_passed = time.time() - last_time
+    print(f'Message: {data.decode()}\nTime passed to recieve data: {time_passed}')
+    
+client_socket.close()
