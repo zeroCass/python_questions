@@ -19,6 +19,7 @@ port = 12000
 # instacia o socket do server, informado o time de conexcao e o tipo de dados que serao transmitidos/recebidos
 server_socket = socket(AF_INET, SOCK_STREAM)
 # atribui para o socket um host e uma porta, para que ele seja um server
+# ''diz ao SO que uma certa porta esta associada ao socket
 server_socket.bind((host, port))
 
 
