@@ -51,5 +51,7 @@ responsabilidade das camadas:
 -propagação (1 BIT): atraso relacionado ao tempo de propagação do enlace FÍSICO = d/s 
 	- d = comprimento do enlace físico
 	- s = velocidade de propagação
-
+	
+**Atraso de fila de pacotes
+L.a/R -> Taxa de chegada de bits/Taxa de transmissa = 'Intensidade do tráfego'
 
