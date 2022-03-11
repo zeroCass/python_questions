@@ -34,3 +34,22 @@ responsabilidade das camadas:
 	- responsavel por TRANSPORTAR/ENCAMINHAR dados recebidos da camada de aplicação atraves de um 
 	 SOCKET. Realiza a comunicação logica entre processos em maquinas diferentes, ou seja, entrega
 	 dados a um processo específico com base em sua PORTA.
+
+*controle de congestionamento x controle de fluxo
+-congestionsmento: problema no nucle da rede
+-fluxo: é o controle na quantidade de dados que o emissor pode enviar para o receptor
+
+
+*atraso e perda de pacotes
+- atraso de enfileiramento: ocorre quando a taxa de recebimento de pacotes excede a taxa de envio
+- perda de pacotes: se dá quando a quantidade de pacotes que chegam excede o buffer da fila do nó 
+
+*4 tipos de atraso:
+-processamento: verificar erros, analisar o header do pacoter e determinar qual sera o enlace de saida (seu destino)
+-fila: tempo de espera no link e depende do nível de congestionamento
+-transmissao (PACOTES): L/R bits/seg 
+-propagação (1 BIT): atraso relacionado ao tempo de propagação do enlace FÍSICO = d/s 
+	- d = comprimento do enlace físico
+	- s = velocidade de propagação
+
+
