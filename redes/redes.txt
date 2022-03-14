@@ -1,3 +1,6 @@
+
+1 - Introdução
+
 *Protocolo -> conjunto de regras e padroes que orientam a comunicação entre duas partes
 - faz parte da aplicação (http/browser, stmp/gmail)
 -quais servições uma aplicação necessita?
@@ -10,7 +13,10 @@
 - definem protocolos
 
 
-*camada de aplicação
+=================================================================================================================================================================================
+
+2 - Camada de aplicação
+
 - aplicação com objetivo de transmiter/receber dados atraves da rede
 - faz interface com usario
 - gera dados que serao transmitidos na rede
@@ -54,4 +60,30 @@ responsabilidade das camadas:
 	
 **Atraso de fila de pacotes
 L.a/R -> Taxa de chegada de bits/Taxa de transmissa = 'Intensidade do tráfego'
+
+
+=================================================================================================================================================================================
+
+
+4 - Camada de Redes
+
+-Forwarding (Repasse): Processo na qual há transferencia pacote do enlace de entrada para o enlace de saída em um único roteador
+-Routing (Roteamento): Envolve todos os roteadores, que juntos por meio de protocolos definem todo o caminho que o pacote terá desde sua origem até o destino
+
+
+*Comutadores de pacotes
+-Comutadores da camada de enlace: utilizam valores dos campos da camada de ENLACE para encominhar pacotes a sua interface de saída
+-Roteadores: Utilizam valores de tabelas da camada de REDE
+	Tabelas de Repasse:
+		Roteadore examinam valores do cabeçalho do pacote para determinar qual será sua interface de saída
+	Estabelecimento de conexão:
+		Algumas arquiteturas da camada de rede (ATM por exemplo), precisam que roteadores mantenham estado de conexão entre si, semelhante
+		ao que TCP faz com a 3-way handshake
+
+Serviços da camada de redes
+-(Possiveis) serviços a um pacote: Entrega garantida, Enterga garantida atraso limitado 
+-(Possiveis) serviços a um fluxo de pacotes: os 2 citados acima, largura de banda mínina, entrega de pacotes na ordem, jitter máximo e segurança 
+
+Serviço da camada de redes da INTERNET
+* O melhor esforço
 
