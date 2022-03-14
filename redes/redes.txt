@@ -68,7 +68,7 @@ L.a/R -> Taxa de chegada de bits/Taxa de transmissa = 'Intensidade do tráfego'
 4 - Camada de Redes
 
 -Forwarding (Repasse): Processo na qual há transferencia pacote do enlace de entrada para o enlace de saída em um único roteador
--Routing (Roteamento): Envolve todos os roteadores, que juntos por meio de protocolos definem todo o caminho que o pacote terá desde sua origem até o destino
+-Routing (Roteamento): Envolve todos os roteadores, que juntos por meio de protocolos definem todo o caminho que o pacote terá desde sua origem até o destino. Esse caminho é calculado por ALGORÍTIMOS DE ROTEAMENTO.
 
 
 *Comutadores de pacotes
@@ -84,6 +84,28 @@ Serviços da camada de redes
 -(Possiveis) serviços a um pacote: Entrega garantida, Enterga garantida atraso limitado 
 -(Possiveis) serviços a um fluxo de pacotes: os 2 citados acima, largura de banda mínina, entrega de pacotes na ordem, jitter máximo e segurança 
 
-Serviço da camada de redes da INTERNET
-* O melhor esforço
+Serviço da camada de redes da arquitetura da INTERNET
+* O melhor esforço: Não garante que o pacote seja entregue, muito menos que seja entregue na ordem. Não garante vazão minina nem atraso limitado
+
+Serviçõs da arquitetura ATM
+-CBR (Constant Bit Rate): Prover que um fluxo de pacotes sejam transmitidos de maneira constante, sem congestionamento, perdas e com ordenação
+-ABR (Available Bit Rate): Há uma garantia de taxa mínima de transmissao, que pode variar de acoro com a disponilidade do enlance e da rede. Garante a ordenação dos pacotes
+
+
+
+*Redes de Datagramas
+-Serviço forncedio pela rede de computadores (INTERNET) não orientadas a conexão, ou seja, não precisam de uma conexão estabelecida pra enviar pacotes e não mantém estado de conexão.
+
+-Utiliza o cabeçalho dos pacotes para extrair o endereço de destino do pacote. Com isso, usar o endereço para identificar em sua tabela de REPASSE qual a interface de saida
+aquele pacote deve ser direcionado. 
+
+-A tabela de redirecionamento dos roteadores são atualizadas pelo ROUTING da redes através dos ALGORÍTIMOS DE ROTEAMENTO.
+
+-Vantagens: Por ser simples, a internet permite que várias camadas de enlance diferentes (ethernet, fivra, radio, satelite) se conectem entre si, mesmo tendo taxas de
+transmissão e carcterísticas de perdas diferentes
+
+
+
+
+
 
