@@ -105,7 +105,42 @@ aquele pacote deve ser direcionado.
 transmissão e carcterísticas de perdas diferentes
 
 
+=================================================================================================================================================================================
 
+
+
+Camada de Enlace
+(É implementada nos adptadores de rede e grande parte do trabalho é feito pelo hardware)
+
+-Objetivo:
+estabelecer uma conexão entre dois host adjacentes que trocarão informações chamadas de quadro
+OS canais de comunição tem limitações: erros, taxa de dados finita, atraso de propagação
+
+-Funções:
+lidar com erros, regular fluxo de dados e fornecer interface bem definida a camada superior (rede)
+
+-Serviçoes oferecidos
+sem conexão e sem confirmações
+sem conexão e com confirmação
+com conexão e com confirmação
+
+-Serviço de Enquadramento
+Devido a presença de erros no fluxo de bits recebidos pela camada física, o enquadramento divide esses bits em quadros distintos.
+4 Métodos para agrupar sequencia de bits nos quadros e determinar o início e o fim de um quadro:
+-Contahem de caracteres
+-Byte de flag com inserção de bytes
+-Flags iniciais e finais, com inserção de bits
+-Violação de codificação da camada física
+
+*É importante mencionar que, é necessário usar servições de correção de erros em canais não 
+confiáveis como o canal sem fio
+
+-Serviço de Decteção de erros
+-bit de paridade
+-checksum
+-codigo de redundancia cíclica
+
+-Serviço de Correção de erros
 
 
 
