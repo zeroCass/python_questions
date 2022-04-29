@@ -31,5 +31,5 @@ while True:
         break
     time_passed = time.time() - last_time
     print(f'Message: {data.decode()}\nTime passed to recieve data: {time_passed}')
-    
+
 client_socket.close()
