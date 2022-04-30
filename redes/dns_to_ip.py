@@ -14,3 +14,4 @@ print(socket.gethostbyaddr(ip))
 print(type(str.encode('ola mundo')))
 msg = 'Ola mund'
 print(type(msg.encode('utf8')))
+

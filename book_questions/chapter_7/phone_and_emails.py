@@ -51,7 +51,6 @@ def get_file(file_name):
 
 
 
-
 def phone_list (text: str) -> list:
     '''
         regex that return the phone list

@@ -98,7 +98,7 @@ print()
 #   {3, 5} - precisa ter entre 3 e 5
 # *** OBS: Eh importante menconar que por default a regex irá mostrar a maior ocorrencia (greed - guloso)
 #           para que isso nao aconteca, eh necessario colocar um ? apos o grupo '(Ha){3,5}?'
-ha_regex = re.compile('(Ha){1,}?', re.IGNORECASE)
+ha_regex = re.compile('(Ha){1,}', re.IGNORECASE)
 print(ha_regex.search('HahaHAHA, estou rindo ein').group())
 print()
 
@@ -124,6 +124,7 @@ print()
 # metodo sub - serve para sibstiuir a ocorrencia especifica pela string passada como param
 agent_name_regex = re.compile(r'Agent (\w)(\w)\w*')
 print(agent_name_regex.sub(r'\1\2***','Agent Alice told Agent Carol that Agent Eve knew Agent Bob was a double agent.'))
+#print(agent_name_regex.findall('Agent Alice told Agent Carol that Agent Eve knew Agent Bob was a double agent.'))
 print()
 
 # ignorando espacos e comentarios para facilitar a leitura da regex -> re.VERBOSE
