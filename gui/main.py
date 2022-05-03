@@ -1,5 +1,5 @@
 from random import randint
-from login_cass import *
+from login_class import *
 
 login = Login()
 # place the window in the center of screen
