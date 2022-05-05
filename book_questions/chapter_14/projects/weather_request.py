@@ -1,3 +1,9 @@
+''''
+Projeto: Acessando dados atuais de previsão do
+tempo
+'''
+
+
 import requests
 import json
 import sys
@@ -84,6 +90,7 @@ def request_weather(params: dict) -> None:
 
         print_dict(array_of_info)
 
+    # is this corret ? think that is not
     except:
         print('City not found. Try a valid one.')
         sys.exit(1)
