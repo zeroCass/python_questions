@@ -23,6 +23,7 @@ para download em http://nostarch.com/automatestuff/.
 
 import imp
 import sys
+import threading
 import requests
 from bs4 import BeautifulSoup
 from donwload_img import img_scrape
@@ -30,26 +31,45 @@ from donwload_img import img_scrape
 
 
 def donwload_xkcd(inicio = None, fim = None) -> None:
-    i, f = None
+    '''
+        inicio e fim estao invertidos nessa funcao
+        dessa forma, inicio > fim e isso eh garantido
+    '''
     if inicio != None and fim != None and inicio < fim:
         [i, f] = [fim, inicio]
     else:
         [i, f] = [inicio, fim]
     
     
-    if inicio is None:
+    if i is None:
         res = requests.get('https://xkcd.com/')
         page = BeautifulSoup(res.text, 'html.parser')
         i = page.find('a', {'rel': 'prev'})['href'].replace('/', '')
         i = int(i) + 1
 
-    if fim is None:
+    if f is None:
         f = 1
 
     thread_list = []
-    for x in range(int(i), int(f)):
-        pass
+    increase = round((int(i) - int(f)) * 0.25)
+    for x in range(int(f), int(i) + 1, increase):
+        
 
+        # refazer essa logica
+        # o algoritimo esta fazendo donwload de valores a mais
+        xf = (x + increase) - 1
+        if xf > int(i):
+            xf = x
+
+        print(f'\n\nx: {x}, increase: {xf}\n\n')
+
+        # th = threading.Thread(target=img_scrape, args=(str(x), str(xf-1)))
+        # thread_list.append(th)
+        # th.start()
+    
+    # for th in thread_list:
+    #     th.join()
+    # print('Done')
 
 
 def main():
