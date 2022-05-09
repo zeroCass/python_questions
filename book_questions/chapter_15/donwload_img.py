@@ -15,8 +15,10 @@ que faça isso.
 '''
 
 
+from concurrent.futures import thread
 from distutils.debug import DEBUG
 from random import betavariate
+import threading
 import requests
 import webbrowser
 from bs4 import BeautifulSoup
@@ -39,7 +41,7 @@ def img_downloader(url:str) -> BeautifulSoup:
     '''
 
     # faz download da pagina
-    print(f'Donwloading page {url}')
+    print(f'\nDonwloading page {url}')
     res = requests.get(url)
     res.raise_for_status()
     # pega o conteudo html da pagina
@@ -55,9 +57,10 @@ def img_downloader(url:str) -> BeautifulSoup:
     
     # autaliza a url com base na url anterior
     prev = page.find('a', {'rel': 'prev'})['href']
-    new_url = 'https://xkcd.com' + prev
+    if prev != '#':
+        prev = prev.replace('/', '')
+    return 'https://xkcd.com/' + prev
 
-    return new_url
 
 
 def img_scrape(inicio:str = None, fim:str = None) -> None:
@@ -73,19 +76,16 @@ def img_scrape(inicio:str = None, fim:str = None) -> None:
 
     if fim == None:
         fim = '#'
-    else:
-        str(fim)
-        fim += '/'
     
     logging.debug(f'fim: {fim} - inicio: {inicio}\n')
 
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     os.makedirs('xkcd', exist_ok=True)
     
-    while not url.endswith(fim):
+    url_fim = url.split('/')[-1]
+    while not fim == url_fim:
+        url_fim = url.split('/')[-1]
         url = img_downloader(url)
-    # eh necessario realizar mais um download, considerando de fato o fim
-    img_downloader(url)
             
 
 def main():

@@ -37,6 +37,7 @@ def donwload_xkcd(inicio = None, fim = None) -> None:
     '''
         inicio e fim estao invertidos nessa funcao
         dessa forma, inicio > fim e isso eh garantido
+        *ficou mt confuso dessa maneira, o site funciona assim tbm
     '''
     if inicio != None and fim != None and inicio < fim:
         [i, f] = [fim, inicio]
@@ -53,23 +54,25 @@ def donwload_xkcd(inicio = None, fim = None) -> None:
     if f is None:
         f = 1
 
+
     thread_list = []
     increase = round((int(i) - int(f)) * 0.25)
     for x in range(int(f), int(i) + 1, increase):
-        
 
-        # refazer essa logica
-        # o algoritimo esta fazendo donwload de valores a mais
+        # verifica se xf (x_final) eh maior do que o fim 
+        # se for, entao xf = fim
         xf = (x + increase) - 1
         if xf > int(i):
-            xf = x
+            xf = int(i)
 
         logging.debug(f'x: {x} - xf(fim): {xf}')
 
+        # cria thread para cada funcao 
         th = threading.Thread(target=img_scrape, args=(str(x), str(xf)))
         thread_list.append(th)
-        th.start()
+        th.start()  # incia a thread
     
+    # espera cada thread terminar
     for th in thread_list:
         th.join()
     logging.debug('Done.')
