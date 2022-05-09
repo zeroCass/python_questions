@@ -39,7 +39,7 @@ def donwload_xkcd(inicio = None, fim = None) -> None:
         dessa forma, inicio > fim e isso eh garantido
         *ficou mt confuso dessa maneira, o site funciona assim tbm
     '''
-    if inicio != None and fim != None and inicio < fim:
+    if inicio is not None and fim is not None and inicio < fim:
         [i, f] = [fim, inicio]
     else:
         [i, f] = [inicio, fim]

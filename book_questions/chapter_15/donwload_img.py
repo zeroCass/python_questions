@@ -15,12 +15,7 @@ que faça isso.
 '''
 
 
-from concurrent.futures import thread
-from distutils.debug import DEBUG
-from random import betavariate
-import threading
 import requests
-import webbrowser
 from bs4 import BeautifulSoup
 import os
 import sys
@@ -67,14 +62,14 @@ def img_scrape(inicio:str = None, fim:str = None) -> None:
     '''
     '''
 
-    if inicio != None and fim != None and int(inicio) < int(fim):
+    if inicio is not None and fim is not None and int(inicio) < int(fim):
         [inicio, fim] = [fim, inicio]
 
     url = 'https://xkcd.com/'
-    if inicio != None:
+    if inicio is not None:
         url += str(inicio)
 
-    if fim == None:
+    if fim is None:
         fim = '#'
     
     logging.debug(f'fim: {fim} - inicio: {inicio}\n')
