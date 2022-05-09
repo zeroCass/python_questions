@@ -27,7 +27,10 @@ import threading
 import requests
 from bs4 import BeautifulSoup
 from donwload_img import img_scrape
-#from ..chapter_11.projects_chapter_11.donwload_img import img_scrape
+import logging
+import time
+
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 
 def donwload_xkcd(inicio = None, fim = None) -> None:
@@ -61,18 +64,21 @@ def donwload_xkcd(inicio = None, fim = None) -> None:
         if xf > int(i):
             xf = x
 
-        print(f'\n\nx: {x}, increase: {xf}\n\n')
+        logging.debug(f'x: {x} - xf(fim): {xf}')
 
-        # th = threading.Thread(target=img_scrape, args=(str(x), str(xf-1)))
-        # thread_list.append(th)
-        # th.start()
+        th = threading.Thread(target=img_scrape, args=(str(x), str(xf)))
+        thread_list.append(th)
+        th.start()
     
-    # for th in thread_list:
-    #     th.join()
-    # print('Done')
+    for th in thread_list:
+        th.join()
+    logging.debug('Done.')
+
 
 
 def main():
+    t = time.perf_counter()
+
     if len(sys.argv) == 2:
         donwload_xkcd(sys.argv[1])
     elif len(sys.argv) >= 3:
@@ -80,6 +86,7 @@ def main():
     else:
         donwload_xkcd()
 
+    print(f'time passed: {time.perf_counter() - t}')
 
 if __name__ == '__main__':
     main()
