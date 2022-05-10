@@ -4,6 +4,9 @@ import smtplib
 gmail_handler = smtplib.SMTP('smtp.gmail.com', 587)
 gmail_handler.ehlo()
 gmail_handler.starttls()
-login = gmail_handler.login('mateusvalerio06@gmail.com', 'mfv120SH412')
-print(login)
+
+user_info = input()
+user = user_info.split()
+gmail_handler.login(user[0], user[1])
+
 
