@@ -8,5 +8,6 @@ gmail_handler.starttls()
 user_info = input()
 user = user_info.split()
 gmail_handler.login(user[0], user[1])
+print(gmail_handler.login(user[0], user[1]))
 
 
