@@ -55,12 +55,15 @@ mail_msg.set_content(msg)
 
 resp = gmail_handler.sendmail(user[0], recv, f'Subject: {subject}\n{msg}')
 resp = gmail_handler.send_message(mail_msg)
-x = 10
 
-
+# x = 10
 # for i in range(x):
 #     resp = gmail_handler.send_message(mail_msg)
 #     if len(resp) == 0:
 #         print('Email send')
 #     time.sleep(10)
 # # print(resp)
+
+
+# fecha a conexao
+gmail_handler.quit()
