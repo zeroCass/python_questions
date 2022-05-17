@@ -67,3 +67,4 @@ resp = gmail_handler.send_message(mail_msg)
 
 # fecha a conexao
 gmail_handler.quit()
+

@@ -12,6 +12,7 @@ process = subprocess.Popen('C:\Windows\System32\calc', creationflags=subprocess.
 #process = subprocess.Popen('C:\Windows\System32\calc', creationflags=subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
 #os.startfile('C:\Windows\System32\calc')
 
+
 process_name = 'calculator.exe'
 # esse pid deixara de existir quando process.poll() == 0
 print(process.pid)
