@@ -7,21 +7,59 @@ import json
 import wmi
 
 
-all_process = []
+# old_process = {p.pid for p in psutil.process_iter()}
+# for p in psutil.process_iter():
+#     pinfo = p.as_dict(attrs=['pid', 'name'])
+#     print(pinfo)
+# calc_process = subprocess.Popen('C:\Windows\System32\calc')
+# print('\n\n')
+# for p in psutil.process_iter():
+#     pinfo = p.as_dict(attrs=['pid', 'name'])
+#     print(pinfo)
+# new_process = {p.pid for p in psutil.process_iter()}
+# process = list(new_process - old_process)[0]
+
+# print(process)
+# print(psutil.Process(process).name())
+# print(psutil.pid_exists(process))
+# for p in psutil.process_iter():
+#     if p.pid == process:
+#         print(f'{p}: name:{p.name()} - pid: {p.pid}')
+
+
+# print(psutil.pid_exists(process))
+# while psutil.pid_exists(process):
+#     print('Process running')
+# print('Done')
+
+process = subprocess.Popen(['start', '/w', 'calc.exe'], shell=True)
+
+while psutil.pid_exists(process.pid):
+    print('Process running')
+print('Done')
+
+
+
+
+
+# all_process = []
 # for p in psutil.process_iter():
 #     #pinfo = p.as_dict(attrs=['pid', 'name', 'create_time'])
 #     all_process.append(p.pid)
 
-#all_process = os.popen('wmic process get processid').read()
+# all_process = os.popen('wmic process get processid').read()
 
 
 
-c = wmi.WMI()
-process_watcher = c.Win32_Process.watch_for("creation")
-lab_process = subprocess.Popen('C:\TrakCare\Lab2014\LabLIVE.bat')
-while True:
-    new_process = process_watcher()
-    print(new_process.Caption,new_process.ProcessId)
+# c = wmi.WMI()
+# process_watcher = c.Win32_Process.watch_for("creation")
+# lab_process = subprocess.Popen('C:\TrakCare\Lab2014\LabLIVE.bat')
+# while True:
+#     new_process = process_watcher()
+#     print(new_process.Caption,new_process.ProcessId)
+
+
+
 
 # with open('otuput.txt', 'w') as f:
 #     for line in all_process:
