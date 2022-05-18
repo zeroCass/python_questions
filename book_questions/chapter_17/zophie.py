@@ -33,3 +33,21 @@ for left in range(0, img_width, face_width):
         print(left, top)
         face_cat.paste(cropped_cat,(left, top))
 face_cat.save('face_cat.png')
+
+# rotate image
+face_cat_rotate = face_cat.copy()
+face_cat_rotate.rotate(6).save('face_cat_rotate.png')
+face_cat_rotate.rotate(6, expand=True).save('face_cat_rotate_expand.png')
+
+
+# is possible to get pixels and putpixels into cordinate (x, y)
+# Image.getpixcel(x, y)
+# Image.putpixel(x, y, (RGBA))
+
+
+
+
+
+
+
+
