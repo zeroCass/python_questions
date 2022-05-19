@@ -61,33 +61,48 @@ def resize_img(img:Image, SQUARE_FIT_SIZE) -> Image:
             width = int((SQUARE_FIT_SIZE * width) / height)
             height = SQUARE_FIT_SIZE
 
+        print(f'{img.filename} was resized.')
         return img.resize((width, height))
     return img
 
-def addlogo(img:Image, img_logo:Image):
+
+
+def addlogo(img:Image, filename:str, img_logo:Image):
+    '''
+        add logo in the lower left corner of the image 
+    '''
+
     source_w, source_h = img.size
     logo_w, logo_h = img_logo.size
     img.paste(img_logo, box=(source_w - logo_w, source_h - logo_h), mask=img_logo)
+    print(f'logo has been added in {filename}.')
 
 
 def main():
     #copy_img(10)
+    # create the folder for the img with logo
+    os.makedirs('with_logo', exist_ok=True)
 
     img_logo = Image.open(LOGO_FILE_NAME)
+    # resize the logo
     img_logo = resize_img(img_logo, 100)
+
     for filename in os.listdir():
-        if filename.lower().endswith('png') or filename.lower().endswith('jpg') \
+        if (filename.lower().endswith('png') or filename.lower().endswith('jpg')) \
                 and filename != LOGO_FILE_NAME:
+                
             img = Image.open(filename)
             img_name = img.filename
+
+            # resize the img
             img = resize_img(img, SQUARE_FIT_SIZE)
-            if img:
-                img_name = img_name.replace('.png', '') + '_resized.png'
-                # img.save(img_name)
-                print(f'{img_name} was resized') 
-            addlogo(img, img_logo)
-            img_name = img_name.replace('_resized.png', '_wlogo.png')
-            img.save(img_name)
+            # add the logo in the img resized
+            
+            addlogo(img, filename, img_logo)
+            # save the img in the folder withlogo
+            
+            img_name = img_name.replace('.png', '_wlogo.png')
+            img.save(os.path.join('with_logo', img_name))
 
 
 
