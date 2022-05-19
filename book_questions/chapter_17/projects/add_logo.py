@@ -12,7 +12,6 @@ custa centenas de dólares. Vamos criar um script para fazer isso.
 
 
 import os
-from pickle import NONE
 from PIL import Image, ImageDraw
 
 
@@ -46,14 +45,8 @@ def copy_img(count:int = 1) -> None:
         print(f'Image {img_name}_{x} was copied.')
 
 
-def addlogo(img: Image, logo: Image) -> Image:
-    '''
-        add a logo e return the new img with logo
-    '''
 
-
-
-def resize_img(img: Image, SQUARE_FIT_SIZE) -> Image:
+def resize_img(img:Image, SQUARE_FIT_SIZE) -> Image:
     '''
         Resize the img based on SQUARE_FIT_SIZE value
         the proportion is maintained
@@ -69,16 +62,19 @@ def resize_img(img: Image, SQUARE_FIT_SIZE) -> Image:
             height = SQUARE_FIT_SIZE
 
         return img.resize((width, height))
-    return None
+    return img
 
-def add_logo(img: Image):
-    pass
-
+def addlogo(img:Image, img_logo:Image):
+    source_w, source_h = img.size
+    logo_w, logo_h = img_logo.size
+    img.paste(img_logo, box=(source_w - logo_w, source_h - logo_h), mask=img_logo)
 
 
 def main():
     #copy_img(10)
 
+    img_logo = Image.open(LOGO_FILE_NAME)
+    img_logo = resize_img(img_logo, 100)
     for filename in os.listdir():
         if filename.lower().endswith('png') or filename.lower().endswith('jpg') \
                 and filename != LOGO_FILE_NAME:
@@ -86,10 +82,15 @@ def main():
             img_name = img.filename
             img = resize_img(img, SQUARE_FIT_SIZE)
             if img:
-                # img_name = img_name.replace('.png', '') + '_resized.png'
+                img_name = img_name.replace('.png', '') + '_resized.png'
                 # img.save(img_name)
                 print(f'{img_name} was resized') 
             addlogo(img, img_logo)
+            img_name = img_name.replace('_resized.png', '_wlogo.png')
+            img.save(img_name)
+
+
+
 
 if __name__ == '__main__':
     main()
