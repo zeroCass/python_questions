@@ -12,7 +12,7 @@ custa centenas de dólares. Vamos criar um script para fazer isso.
 
 
 import os
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 
 
 
@@ -78,8 +78,39 @@ def addlogo(img:Image, filename:str, img_logo:Image):
     print(f'logo has been added in {filename}.')
 
 
+def addtext(img:Image, text:str, text_color:str='black', font:str='arial', rectangle:bool=False):
+    '''
+        Adds a text to img 
+        if the rectangle is True, add the rect
+
+        futere features: it is possible to calculate the lenght of the
+        rectangle based on the lenght of the text
+    '''
+
+
+    # creates the obj to draw passing the img that will be used for draw
+    draw_text = ImageDraw.Draw(img)
+    
+    # this is one the approchs to draw, but the size is not chosen
+    #draw_text.text((20, 150), text, fill='red')
+
+    # crates the font obj passing the font name and the size of the font
+    _font = ImageFont.truetype(font + '.ttf', 16)
+    # the second approch to draw
+    draw_text.text((10, 10), text, fill=text_color, font=_font)
+
+    if rectangle:
+        draw_text.rectangle((6,10,70,27), outline='black')
+
+    print('Text added with sucess.')
+
+
+
+
+# the current dir is the img_folder
 def main():
     #copy_img(10)
+    
     # create the folder for the img with logo
     os.makedirs('with_logo', exist_ok=True)
 
@@ -90,7 +121,7 @@ def main():
     for filename in os.listdir():
         if (filename.lower().endswith('png') or filename.lower().endswith('jpg')) \
                 and filename != LOGO_FILE_NAME:
-                
+
             img = Image.open(filename)
             img_name = img.filename
 
@@ -101,8 +132,12 @@ def main():
             addlogo(img, filename, img_logo)
             # save the img in the folder withlogo
             
+            # add the text and the rectangle
+            addtext(img, text='The cat', rectangle=True)
+
             img_name = img_name.replace('.png', '_wlogo.png')
             img.save(os.path.join('with_logo', img_name))
+    
 
 
 
