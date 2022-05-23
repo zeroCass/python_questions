@@ -1,0 +1,615 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   CBHRBZRECEP - CUPS 1.6.3
+  </title>
+  <link href="/cups.css" rel="STYLESHEET" type="text/css"/>
+  <link href="/images/cups-icon.png" rel="SHORTCUT ICON" type="image/png"/>
+ </head>
+ <body>
+  <table class="page" summary="CBHRBZRECEP">
+   <tr>
+    <td class="body">
+     <table border="0" cellpadding="0" cellspacing="0" summary="">
+      <tr height="36">
+       <td>
+        <a href="http://www.cups.org/" target="_blank">
+         <img alt="" border="0" height="36" src="/images/left.gif" width="64"/>
+        </a>
+       </td>
+       <td class="unsel">
+        <a href="/">
+         Home
+        </a>
+       </td>
+       <td class="unsel">
+        <a href="/admin">
+         Administration
+        </a>
+       </td>
+       <td class="unsel">
+        <a href="/classes/">
+         Classes
+        </a>
+       </td>
+       <td class="unsel">
+        <a href="/help/">
+         Online Help
+        </a>
+       </td>
+       <td class="unsel">
+        <a href="/jobs/">
+         Jobs
+        </a>
+       </td>
+       <td class="sel">
+        <a href="/printers/">
+         Printers
+        </a>
+       </td>
+       <td class="unsel" width="100%">
+        <form action="/help/" method="GET">
+         <input autosave="org.cups.help" name="QUERY" placeholder="Search Help" results="20" size="20" type="SEARCH" value=""/>
+        </form>
+       </td>
+       <td>
+        <img alt="" height="36" src="/images/right.gif" width="4"/>
+       </td>
+      </tr>
+      <tr>
+       <td colspan="9">
+       </td>
+      </tr>
+     </table>
+     <div class="indent">
+      <h2 class="title">
+       <a href="/printers/CBHRBZRECEP">
+        CBHRBZRECEP
+       </a>
+       (Paused,
+Accepting Jobs,
+Not Shared)
+      </h2>
+      <form action="/printers/CBHRBZRECEP" method="POST" name="maintenance">
+       <input name="org.cups.sid" type="HIDDEN" value="d68d8613ca556a33ad49e40322081ebe"/>
+       <select name="OP" onchange="document.maintenance.submit();">
+        <option value="">
+         Maintenance
+        </option>
+        <option value="print-test-page">
+         Print Test Page
+        </option>
+        <option value="start-printer">
+         Resume Printer
+        </option>
+        <option value="reject-jobs">
+         Reject Jobs
+        </option>
+        <option value="move-jobs">
+         Move All Jobs
+        </option>
+        <option value="purge-jobs">
+         Cancel All Jobs
+        </option>
+       </select>
+       <input style="display: none;" type="SUBMIT" value="Go"/>
+      </form>
+      <form action="/admin/" method="POST" name="administration">
+       <input name="org.cups.sid" type="HIDDEN" value="d68d8613ca556a33ad49e40322081ebe"/>
+       <input name="printer_name" type="HIDDEN" value="CBHRBZRECEP"/>
+       <select name="OP" onchange="document.administration.submit();">
+        <option value="">
+         Administration
+        </option>
+        <option value="modify-printer">
+         Modify Printer
+        </option>
+        <option value="delete-printer">
+         Delete Printer
+        </option>
+        <option value="set-printer-options">
+         Set Default Options
+        </option>
+        <option value="set-as-default">
+         Set As Server Default
+        </option>
+        <option value="set-allowed-users">
+         Set Allowed Users
+        </option>
+       </select>
+       <input style="display: none;" type="SUBMIT" value="Go"/>
+      </form>
+      <table summary="CBHRBZRECEP">
+       <tr>
+        <th align="RIGHT" valign="TOP">
+         Description:
+        </th>
+        <td>
+         CBHRBZRECEP
+        </td>
+       </tr>
+       <tr>
+        <th align="RIGHT" valign="TOP">
+         Location:
+        </th>
+        <td>
+         Hospital Regional de Brazlândia
+        </td>
+       </tr>
+       <tr>
+        <th align="RIGHT" valign="TOP">
+         Driver:
+        </th>
+        <td>
+         Generic text-only printer (grayscale, 2-sided printing)
+         <br/>
+         <tr>
+          <th align="RIGHT" valign="TOP">
+           Connection:
+          </th>
+          <td>
+           smb://HRBZ-LABO.saude.df.gov.br/CBHRBZRECEP
+          </td>
+         </tr>
+         <tr>
+          <th align="RIGHT" valign="TOP">
+           Defaults:
+          </th>
+          <td>
+           job-sheets=none, none
+media=na_letter_8.5x11in
+sides=one-sided
+          </td>
+         </tr>
+        </td>
+       </tr>
+      </table>
+     </div>
+     <div class="indent">
+      <h3 class="title">
+       Jobs
+      </h3>
+     </div>
+     <form action="/printers/CBHRBZRECEP" method="GET">
+      <input name="ORDER" type="HIDDEN" value="asc"/>
+      <p align="CENTER">
+       <b>
+        Search in
+CBHRBZRECEP:
+       </b>
+       <input autosave="org.cups.printers" name="QUERY" placeholder="" results="20" size="40" type="SEARCH" value=""/>
+       <input type="SUBMIT" value="Search"/>
+       <input name="CLEAR" type="SUBMIT" value="Clear"/>
+      </p>
+     </form>
+     <div class="indent">
+      <form action="/printers/CBHRBZRECEP" method="GET">
+       <input name="which_jobs" type="HIDDEN" value="completed"/>
+       <input type="SUBMIT" value="Show Completed Jobs"/>
+      </form>
+      <form action="/printers/CBHRBZRECEP" method="GET">
+       <input name="which_jobs" type="HIDDEN" value="all"/>
+       <input type="SUBMIT" value="Show All Jobs"/>
+      </form>
+     </div>
+     <p align="CENTER">
+      Showing 1 of 1 active job.
+     </p>
+     <table class="list" summary="Job List">
+      <thead>
+       <tr>
+        <th>
+         <a href="/printers/CBHRBZRECEP?QUERY=&amp;WHICH_JOBS=&amp;FIRST={FIRST}&amp;ORDER=dec">
+          <small>
+           ▼
+          </small>
+          ID
+          <small>
+           ▼
+          </small>
+         </a>
+        </th>
+        <th>
+         Name
+        </th>
+        <th>
+         User
+        </th>
+        <th>
+         Size
+        </th>
+        <th>
+         Pages
+        </th>
+        <th>
+         State
+        </th>
+        <th>
+         Control
+        </th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr valign="TOP">
+        <td>
+         <a href="/printers/CBHRBZRECEP">
+          CBHRBZRECEP
+         </a>
+         -8132596
+        </td>
+        <td>
+         Unknown
+        </td>
+        <td>
+         Withheld
+        </td>
+        <td>
+         3k
+        </td>
+        <td>
+         1
+        </td>
+        <td>
+         pending since
+         <br/>
+         Mon 23 May 2022 12:51:03 PM -03
+         <br/>
+         <em>
+          "Connection failed: NT_STATUS_RESOURCE_NAME_NOT_FOUND"
+         </em>
+        </td>
+        <td>
+         <form action="/jobs/" method="POST">
+          <input name="org.cups.sid" type="HIDDEN" value="d68d8613ca556a33ad49e40322081ebe"/>
+          <input name="OP" type="HIDDEN" value="hold-job"/>
+          <input name="job_id" type="HIDDEN" value="8132596"/>
+          <input name="job_printer_uri" type="HIDDEN" value="/printers/CBHRBZRECEP"/>
+          <input type="SUBMIT" value="Hold Job"/>
+         </form>
+         <form action="/jobs/" method="POST">
+          <input name="OP" type="HIDDEN" value="cancel-job"/>
+          <input name="job_id" type="HIDDEN" value="8132596"/>
+          <input name="job_printer_uri" type="HIDDEN" value="/printers/CBHRBZRECEP"/>
+          <input type="SUBMIT" value="Cancel Job"/>
+         </form>
+         <form action="/jobs/" method="POST">
+          <input name="org.cups.sid" type="HIDDEN" value="d68d8613ca556a33ad49e40322081ebe"/>
+          <input name="OP" type="HIDDEN" value="move-job"/>
+          <input name="job_id" type="HIDDEN" value="8132596"/>
+          <input type="SUBMIT" value="Move Job"/>
+         </form>
+        </td>
+       </tr>
+      </tbody>
+     </table>
+    </td>
+   </tr>
+   <tr>
+    <td>
+    </td>
+   </tr>
+   <tr>
+    <td class="trailer">
+     CUPS and the CUPS logo are trademarks of
+     <a href="http://www.apple.com">
+      Apple Inc.
+     </a>
+     Copyright 2007-2013 Apple
+Inc. All rights reserved.
+    </td>
+   </tr>
+  </table>
+ </body>
+</html>
+
+PS C:\Users\05694223101\Documents\python\python_issues\book_questions\chapter_18> python .\request.py
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   CBHRBZRECEP - CUPS 1.6.3
+  </title>
+  <link href="/cups.css" rel="STYLESHEET" type="text/css"/>
+  <link href="/images/cups-icon.png" rel="SHORTCUT ICON" type="image/png"/>
+ </head>
+ <body>
+  <table class="page" summary="CBHRBZRECEP">
+   <tr>
+    <td class="body">
+     <table border="0" cellpadding="0" cellspacing="0" summary="">
+      <tr height="36">
+       <td>
+        <a href="http://www.cups.org/" target="_blank">
+         <img alt="" border="0" height="36" src="/images/left.gif" width="64"/>
+        </a>
+       </td>
+       <td class="unsel">
+        <a href="/">
+         Home
+        </a>
+       </td>
+       <td class="unsel">
+        <a href="/admin">
+         Administration
+        </a>
+       </td>
+       <td class="unsel">
+        <a href="/classes/">
+         Classes
+        </a>
+       </td>
+       <td class="unsel">
+        <a href="/help/">
+         Online Help
+        </a>
+       </td>
+       <td class="unsel">
+        <a href="/jobs/">
+         Jobs
+        </a>
+       </td>
+       <td class="sel">
+        <a href="/printers/">
+         Printers
+        </a>
+       </td>
+       <td class="unsel" width="100%">
+        <form action="/help/" method="GET">
+         <input autosave="org.cups.help" name="QUERY" placeholder="Search Help" results="20" size="20" type="SEARCH" value=""/>
+        </form>
+       </td>
+       <td>
+        <img alt="" height="36" src="/images/right.gif" width="4"/>
+       </td>
+      </tr>
+      <tr>
+       <td colspan="9">
+       </td>
+      </tr>
+     </table>
+     <div class="indent">
+      <h2 class="title">
+       <a href="/printers/CBHRBZRECEP">
+        CBHRBZRECEP
+       </a>
+       (Paused,
+Accepting Jobs,
+Not Shared)
+      </h2>
+      <form action="/printers/CBHRBZRECEP" method="POST" name="maintenance">
+       <input name="org.cups.sid" type="HIDDEN" value="41bbb0ff2031e5de3d77c508c296eaa1"/>
+       <select name="OP" onchange="document.maintenance.submit();">
+        <option value="">
+         Maintenance
+        </option>
+        <option value="print-test-page">
+         Print Test Page
+        </option>
+        <option value="start-printer">
+         Resume Printer
+        </option>
+        <option value="reject-jobs">
+         Reject Jobs
+        </option>
+        <option value="move-jobs">
+         Move All Jobs
+        </option>
+        <option value="purge-jobs">
+         Cancel All Jobs
+        </option>
+       </select>
+       <input style="display: none;" type="SUBMIT" value="Go"/>
+      </form>
+      <form action="/admin/" method="POST" name="administration">
+       <input name="org.cups.sid" type="HIDDEN" value="41bbb0ff2031e5de3d77c508c296eaa1"/>
+       <input name="printer_name" type="HIDDEN" value="CBHRBZRECEP"/>
+       <select name="OP" onchange="document.administration.submit();">
+        <option value="">
+         Administration
+        </option>
+        <option value="modify-printer">
+         Modify Printer
+        </option>
+        <option value="delete-printer">
+         Delete Printer
+        </option>
+        <option value="set-printer-options">
+         Set Default Options
+        </option>
+        <option value="set-as-default">
+         Set As Server Default
+        </option>
+        <option value="set-allowed-users">
+         Set Allowed Users
+        </option>
+       </select>
+       <input style="display: none;" type="SUBMIT" value="Go"/>
+      </form>
+      <table summary="CBHRBZRECEP">
+       <tr>
+        <th align="RIGHT" valign="TOP">
+         Description:
+        </th>
+        <td>
+         CBHRBZRECEP
+        </td>
+       </tr>
+       <tr>
+        <th align="RIGHT" valign="TOP">
+         Location:
+        </th>
+        <td>
+         Hospital Regional de Brazlândia
+        </td>
+       </tr>
+       <tr>
+        <th align="RIGHT" valign="TOP">
+         Driver:
+        </th>
+        <td>
+         Generic text-only printer (grayscale, 2-sided printing)
+         <br/>
+         <tr>
+          <th align="RIGHT" valign="TOP">
+           Connection:
+          </th>
+          <td>
+           smb://HRBZ-LABO.saude.df.gov.br/CBHRBZRECEP
+          </td>
+         </tr>
+         <tr>
+          <th align="RIGHT" valign="TOP">
+           Defaults:
+          </th>
+          <td>
+           job-sheets=none, none
+media=na_letter_8.5x11in
+sides=one-sided
+          </td>
+         </tr>
+        </td>
+       </tr>
+      </table>
+     </div>
+     <div class="indent">
+      <h3 class="title">
+       Jobs
+      </h3>
+     </div>
+     <form action="/printers/CBHRBZRECEP" method="GET">
+      <input name="ORDER" type="HIDDEN" value="asc"/>
+      <p align="CENTER">
+       <b>
+        Search in
+CBHRBZRECEP:
+       </b>
+       <input autosave="org.cups.printers" name="QUERY" placeholder="" results="20" size="40" type="SEARCH" value=""/>
+       <input type="SUBMIT" value="Search"/>
+       <input name="CLEAR" type="SUBMIT" value="Clear"/>
+      </p>
+     </form>
+     <div class="indent">
+      <form action="/printers/CBHRBZRECEP" method="GET">
+       <input name="which_jobs" type="HIDDEN" value="completed"/>
+       <input type="SUBMIT" value="Show Completed Jobs"/>
+      </form>
+      <form action="/printers/CBHRBZRECEP" method="GET">
+       <input name="which_jobs" type="HIDDEN" value="all"/>
+       <input type="SUBMIT" value="Show All Jobs"/>
+      </form>
+     </div>
+     <p align="CENTER">
+      Showing 1 of 1 active job.
+     </p>
+     <table class="list" summary="Job List">
+      <thead>
+       <tr>
+        <th>
+         <a href="/printers/CBHRBZRECEP?QUERY=&amp;WHICH_JOBS=&amp;FIRST={FIRST}&amp;ORDER=dec">
+          <small>
+           ▼
+          </small>
+          ID
+          <small>
+           ▼
+          </small>
+         </a>
+        </th>
+        <th>
+         Name
+        </th>
+        <th>
+         User
+        </th>
+        <th>
+         Size
+        </th>
+        <th>
+         Pages
+        </th>
+        <th>
+         State
+        </th>
+        <th>
+         Control
+        </th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr valign="TOP">
+        <td>
+         <a href="/printers/CBHRBZRECEP">
+          CBHRBZRECEP
+         </a>
+         -8132596
+        </td>
+        <td>
+         Unknown
+        </td>
+        <td>
+         Withheld
+        </td>
+        <td>
+         3k
+        </td>
+        <td>
+         1
+        </td>
+        <td>
+         pending since
+         <br/>
+         Mon 23 May 2022 12:51:03 PM -03
+         <br/>
+         <em>
+          "Connection failed: NT_STATUS_RESOURCE_NAME_NOT_FOUND"
+         </em>
+        </td>
+        <td>
+         <form action="/jobs/" method="POST">
+          <input name="org.cups.sid" type="HIDDEN" value="41bbb0ff2031e5de3d77c508c296eaa1"/>
+          <input name="OP" type="HIDDEN" value="hold-job"/>
+          <input name="job_id" type="HIDDEN" value="8132596"/>
+          <input name="job_printer_uri" type="HIDDEN" value="/printers/CBHRBZRECEP"/>
+          <input type="SUBMIT" value="Hold Job"/>
+         </form>
+         <form action="/jobs/" method="POST">
+          <input name="org.cups.sid" type="HIDDEN" value="41bbb0ff2031e5de3d77c508c296eaa1"/>
+          <input name="OP" type="HIDDEN" value="cancel-job"/>
+          <input name="job_id" type="HIDDEN" value="8132596"/>
+          <input name="job_printer_uri" type="HIDDEN" value="/printers/CBHRBZRECEP"/>
+          <input type="SUBMIT" value="Cancel Job"/>
+         </form>
+         <form action="/jobs/" method="POST">
+          <input name="org.cups.sid" type="HIDDEN" value="41bbb0ff2031e5de3d77c508c296eaa1"/>
+          <input name="OP" type="HIDDEN" value="move-job"/>
+          <input name="job_id" type="HIDDEN" value="8132596"/>
+          <input type="SUBMIT" value="Move Job"/>
+         </form>
+        </td>
+       </tr>
+      </tbody>
+     </table>
+    </td>
+   </tr>
+   <tr>
+    <td>
+    </td>
+   </tr>
+   <tr>
+    <td class="trailer">
+     CUPS and the CUPS logo are trademarks of
+     <a href="http://www.apple.com">
+      Apple Inc.
+     </a>
+     Copyright 2007-2013 Apple
+Inc. All rights reserved.
+    </td>
+   </tr>
+  </table>
+ </body>
+</html>
+
+PS C:\Users\05694223101\Documents\python\python_issues\book_questions\chapter_18> 
