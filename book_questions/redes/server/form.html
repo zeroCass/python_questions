@@ -1,0 +1,71 @@
+<h1>Formulario</h1>
+
+<form action="http://localhost:3003/usuarios" method="POST">
+    <label for="nome">Nome: </label>
+    <input type="text" name="nome">
+    
+    <label for="password">Senha:</label>
+    <input type="password" name="senha">
+
+    <label for="idade">Idade: </label>
+    <input type="text" name="idade">
+
+
+    <div>
+        <input type="radio" name="sexo" value="Masculino">
+        <label for="masc">Masculino</label>
+        <input type="radio" name="sexo" value="Masculino">
+        <label for="fem">Feminino</label>
+    </div>
+    
+    <select name="estado">
+        <option value="">Selecione</option>
+        <option value="df">DF</option>
+        <option value="sp">Sao Paulo</option>
+        <option value="rj">Rio de Janeiro</option>
+    </select>
+
+    <select name="linguagens" multiple size="4">
+        <option value="c">C</option>
+        <option value="python">Python</option>
+        <option value="java">Java</option>
+        <option value="js">JavasScript</option>
+    </select>
+
+    <button>Incluir</button>
+    <button formaction="http://localhost:3003/usuarios/lista" formmethod="GET">Lista de Usuários</button>
+</form>
+
+    
+
+<style>
+
+    input[type=text], 
+    input[type=password] {
+        display: block;
+        padding: 3px;
+        margin-bottom: 5px;
+    }
+
+    input[type=password]:hover {
+        background-color: yellow;
+    }
+
+    input[type=radio] {
+        display: inline;
+        padding: 5px;
+    }
+
+    select {
+        display: block;
+        padding: 5px;
+        margin-bottom: 5px;
+        margin-top: 5px;
+    }
+
+    button {
+        display: inline-block;
+        padding: 5;
+    }
+
+</style>
