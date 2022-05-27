@@ -29,7 +29,8 @@ def eliminate_noise():
 
 
 def main():
-    pytesseract.pytesseract.tesseract_cmd = 'C:\\Users\\05694223101\\AppData\\Local\\Programs\\Tesseract-OCR\\tesseract.exe'
+    #pytesseract.pytesseract.tesseract_cmd = 'C:\\Users\\05694223101\\AppData\\Local\\Programs\\Tesseract-OCR\\tesseract.exe'
+    pytesseract.pytesseract.tesseract_cmd = 'C:\\Users\\zero\\AppData\\Local\\Programs\\Tesseract-OCR\\tesseract.exe'
     ocr_result = []
 
     img = cv2.imread('lab_1.PNG')
