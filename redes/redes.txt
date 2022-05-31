@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 1 - Introdução
 
@@ -144,3 +145,151 @@ confiáveis como o canal sem fio
 
 
 
+=======
+
+1 - Introdução
+
+*Protocolo -> conjunto de regras e padroes que orientam a comunicação entre duas partes
+- faz parte da aplicação (http/browser, stmp/gmail)
+-quais servições uma aplicação necessita?
+	- transferencia confiavel de dados ?
+	- temporização / atrasos baixos ?
+- a aplicação é responsável por estabeler as regras(escolher o protocolo) de comunicação que ela necessita 
+
+
+*RFC -> agencia reguladora de protocolos
+- definem protocolos
+
+
+=================================================================================================================================================================================
+
+2 - Camada de aplicação
+
+- aplicação com objetivo de transmiter/receber dados atraves da rede
+- faz interface com usario
+- gera dados que serao transmitidos na rede
+
+Cookies (softwares)
+- registro das ulimas seções que servidores http guardam sobre o usuario, pois nao possuem estado (monitoramento)
+- exemplo informações:
+	- autorização, cartoes de compra, recomendações
+
+servidores proxy (caches web)
+- servidores que ficam na ISP
+- fazer a interface entre o usuario final e os servidores de origem
+- guarda arquivos/endereços muito requisitados
+- so realiza consulta nos servidores de origem caso o objeto solicitado tenha sido alterado
+
+
+responsabilidade das camadas:
+-camada de aplicação
+	- protocolos definidos nos programas responsaveis por ENVIAR e RECEBER dados atraves da rede
+-camada de transporte
+	- responsavel por TRANSPORTAR/ENCAMINHAR dados recebidos da camada de aplicação atraves de um 
+	 SOCKET. Realiza a comunicação logica entre processos em maquinas diferentes, ou seja, entrega
+	 dados a um processo específico com base em sua PORTA.
+
+*controle de congestionamento x controle de fluxo
+-congestionsmento: problema no nucle da rede
+-fluxo: é o controle na quantidade de dados que o emissor pode enviar para o receptor
+
+
+*atraso e perda de pacotes
+- atraso de enfileiramento: ocorre quando a taxa de recebimento de pacotes excede a taxa de envio
+- perda de pacotes: se dá quando a quantidade de pacotes que chegam excede o buffer da fila do nó 
+
+*4 tipos de atraso:
+-processamento: verificar erros, analisar o header do pacoter e determinar qual sera o enlace de saida (seu destino)
+-fila: tempo de espera no link e depende do nível de congestionamento
+-transmissao (PACOTES): L/R bits/seg 
+-propagação (1 BIT): atraso relacionado ao tempo de propagação do enlace FÍSICO = d/s 
+	- d = comprimento do enlace físico
+	- s = velocidade de propagação
+	
+**Atraso de fila de pacotes
+L.a/R -> Taxa de chegada de bits/Taxa de transmissa = 'Intensidade do tráfego'
+
+
+=================================================================================================================================================================================
+
+
+4 - Camada de Redes
+
+-Forwarding (Repasse): Processo na qual há transferencia pacote do enlace de entrada para o enlace de saída em um único roteador
+-Routing (Roteamento): Envolve todos os roteadores, que juntos por meio de protocolos definem todo o caminho que o pacote terá desde sua origem até o destino. Esse caminho é calculado por ALGORÍTIMOS DE ROTEAMENTO.
+
+
+*Comutadores de pacotes
+-Comutadores da camada de enlace: utilizam valores dos campos da camada de ENLACE para encominhar pacotes a sua interface de saída
+-Roteadores: Utilizam valores de tabelas da camada de REDE
+	Tabelas de Repasse:
+		Roteadore examinam valores do cabeçalho do pacote para determinar qual será sua interface de saída
+	Estabelecimento de conexão:
+		Algumas arquiteturas da camada de rede (ATM por exemplo), precisam que roteadores mantenham estado de conexão entre si, semelhante
+		ao que TCP faz com a 3-way handshake
+
+Serviços da camada de redes
+-(Possiveis) serviços a um pacote: Entrega garantida, Enterga garantida atraso limitado 
+-(Possiveis) serviços a um fluxo de pacotes: os 2 citados acima, largura de banda mínina, entrega de pacotes na ordem, jitter máximo e segurança 
+
+Serviço da camada de redes da arquitetura da INTERNET
+* O melhor esforço: Não garante que o pacote seja entregue, muito menos que seja entregue na ordem. Não garante vazão minina nem atraso limitado
+
+Serviçõs da arquitetura ATM
+-CBR (Constant Bit Rate): Prover que um fluxo de pacotes sejam transmitidos de maneira constante, sem congestionamento, perdas e com ordenação
+-ABR (Available Bit Rate): Há uma garantia de taxa mínima de transmissao, que pode variar de acoro com a disponilidade do enlance e da rede. Garante a ordenação dos pacotes
+
+
+
+*Redes de Datagramas
+-Serviço forncedio pela rede de computadores (INTERNET) não orientadas a conexão, ou seja, não precisam de uma conexão estabelecida pra enviar pacotes e não mantém estado de conexão.
+
+-Utiliza o cabeçalho dos pacotes para extrair o endereço de destino do pacote. Com isso, usar o endereço para identificar em sua tabela de REPASSE qual a interface de saida
+aquele pacote deve ser direcionado. 
+
+-A tabela de redirecionamento dos roteadores são atualizadas pelo ROUTING da redes através dos ALGORÍTIMOS DE ROTEAMENTO.
+
+-Vantagens: Por ser simples, a internet permite que várias camadas de enlance diferentes (ethernet, fivra, radio, satelite) se conectem entre si, mesmo tendo taxas de
+transmissão e carcterísticas de perdas diferentes
+
+
+=================================================================================================================================================================================
+
+
+
+Camada de Enlace
+(É implementada nos adptadores de rede e grande parte do trabalho é feito pelo hardware)
+
+-Objetivo:
+estabelecer uma conexão entre dois host adjacentes que trocarão informações chamadas de quadro
+OS canais de comunição tem limitações: erros, taxa de dados finita, atraso de propagação
+
+-Funções:
+lidar com erros, regular fluxo de dados e fornecer interface bem definida a camada superior (rede)
+
+-Serviçoes oferecidos
+sem conexão e sem confirmações
+sem conexão e com confirmação
+com conexão e com confirmação
+
+-Serviço de Enquadramento
+Devido a presença de erros no fluxo de bits recebidos pela camada física, o enquadramento divide esses bits em quadros distintos.
+4 Métodos para agrupar sequencia de bits nos quadros e determinar o início e o fim de um quadro:
+-Contahem de caracteres
+-Byte de flag com inserção de bytes
+-Flags iniciais e finais, com inserção de bits
+-Violação de codificação da camada física
+
+*É importante mencionar que, é necessário usar servições de correção de erros em canais não 
+confiáveis como o canal sem fio
+
+-Serviço de Decteção de erros
+-bit de paridade
+-checksum
+-codigo de redundancia cíclica
+
+-Serviço de Correção de erros
+
+
+
+>>>>>>> de2a0e050a443a380c2f9444fd943b172e1781ee
