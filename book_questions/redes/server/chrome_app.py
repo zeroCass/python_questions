@@ -16,8 +16,9 @@ try:
         #element.click()
         try:
             obj = browser.switch_to.alert
-            obj.send_keys(keysToSend='root\ue004redhat')
-            obj.accept()
+            print('alert appears')
+            #obj.send_keys(keysToSend='root\ue004redhat')
+            #obj.accept()
         except Exception as e:
             print(e)
         print(browser.current_url)
