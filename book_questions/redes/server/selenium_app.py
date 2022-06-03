@@ -14,10 +14,12 @@ def remove_auth(string: str):
 
 #PATH = 'C:\Program Files (x86)\chromedriver.exe'
 PATH = r'C:\Users\05694223101\AppData\Roaming\Python\Python310\chromedriver.exe'
-MAIN_PAGE = 'https://10.233.87.11:631/admin'
-driver = webdriver.Chrome(PATH)
-#driver.get('https://www.hyrtutorials.com/p/alertsdemo.html')
-#driver.get('https://admin:admin@the-internet.herokuapp.com/basic_auth')
+MAIN_PAGE = 'https://10.233.87.11:631/jobs/'
+options = webdriver.ChromeOptions()
+options.add_argument('--headless')
+options.add_argument('--ignore-certificate-errors')
+options.add_argument('--ignore-ssl-errors')
+driver = webdriver.Chrome(PATH, options=options)
 driver.get(MAIN_PAGE)
 
 # list to control the previous page[0] and the current page[1]
@@ -27,7 +29,8 @@ AUTHENT = False
 try:
     while True:
         # debug propurse
-        print(f'name: {driver.title}')
+        print(f'\nname: {driver.title}')
+
 
         if not(len(driver.title) > 1) and not AUTHENT:
             print('Authentication...')
@@ -49,6 +52,12 @@ try:
         if driver.title == 'Erro de privacidade':
             driver.find_element(By.ID, 'details-button').click()
             driver.find_element(By.ID, 'proceed-link').click()
+        
+        table = driver.find_elements(By.XPATH, '/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr')
+        '/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[2]'
+        for count, row in enumerate(table):
+            print(f'{count}: {row.text}')
+
             
 except KeyboardInterrupt as e:
     print('Done')
