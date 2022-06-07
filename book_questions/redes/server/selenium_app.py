@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.alert import Alert
+from selenium.webdriver.support.select import Select
 import time
 #import win32com.client as comclient
 
@@ -19,6 +20,14 @@ driver.get(MAIN_PAGE)
 url_control = ['', MAIN_PAGE]
 AUTHENT = False
 
+
+
+def modify_url_printer(driver, AUTHENT, printer):
+    select_elem = driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/div[1]/form[2]/select')
+    select_obj = Select(select_elem)
+    select_obj.select_by_index(2)
+    time.sleep(3)
+    check_authn(AUTHENT)
 
 
 def remove_auth(string: str):
@@ -66,20 +75,28 @@ try:
         
         
         if driver.current_url == MAIN_PAGE:
+            print('---------------------------------------------------')
             printer = {}
             jobs_num = driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/p').text
             jobs_num = int(jobs_num.split()[1])
-            
-            for tr in range(1, jobs_num + 1, 7):
-                printer_name = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[{tr}]/td[1]')
-                printer_state = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[{tr}]/td[6]')
-                # /html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[1]/td[1]/a
-                # /html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[1]/td[6]
-                # print(table_line)
-            # table = driver.find_elements(By.XPATH, '/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr')
-            # '/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[2]'
-            # for count, row in enumerate(table):
-            #     print(f'{count}: {row.text}')
+            print(f'number of jobs: {jobs_num}')
+
+            for tr in range(1, jobs_num + 1):
+                printer['name'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[{tr}]/td[1]').text
+                printer['href'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[{tr}]/td[1]/a').get_attribute('href')
+                printer['state'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[{tr}]/td[6]').text
+                
+        
+                driver.execute_script("window.open('')")
+                driver.switch_to.window(driver.window_handles[-1])
+                driver.get(printer['href'])
+                
+                modify_url_printer(driver, AUTHENT, printer)
+
+                time.sleep(10)
+                driver.close()
+                driver.switch_to.window(driver.window_handles[0])
+                
 
             
 except KeyboardInterrupt as e:
