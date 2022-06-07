@@ -7,7 +7,7 @@ import time
 
 
 #PATH = 'C:\Program Files (x86)\chromedriver.exe'
-PATH = r'C:\Users\05694223101\AppData\Roaming\Python\Python310\chromedriver.exe'
+PATH = r'C:\Users\%USERPROFILE%\AppData\Roaming\Python\Python310\chromedriver.exe'
 MAIN_PAGE = 'https://10.233.87.11:631/jobs/'
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
