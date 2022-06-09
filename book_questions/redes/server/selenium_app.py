@@ -9,6 +9,10 @@ import sys
 #import win32com.client as comclient
 
 
+'''
+handle release jobs
+'''
+
 #PATH = 'C:\Program Files (x86)\chromedriver.exe'
 PATH = r'C:\Users\05694223101\AppData\Roaming\Python\Python310\chromedriver.exe'
 MAIN_PAGE = 'https://10.233.87.11:631/jobs/'
@@ -25,7 +29,7 @@ options.add_argument('--disable-gpu')
 options.add_argument('--start-maximized')
 options.add_argument('--proxy-bypass-list=*')
 options.add_argument("--proxy-server='direct://'")
-driver = webdriver.Chrome(PATH, options=options)
+driver = webdriver.Chrome(PATH)
 driver.get(MAIN_PAGE)
 
 # list to control the previous page[0] and the current page[1]
@@ -51,13 +55,30 @@ def goto(current_page, btn_xpath):
 
 def modify_url_printer():
     global driver
+    # find the selection element - modify-printer
     select_elem = driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/div[1]/form[2]/select')
     select_obj = Select(select_elem)
     driver.get_screenshot_as_file('screenshot9.png')
     select_obj.select_by_value('modify-printer')
     driver.get_screenshot_as_file('screenshot10.png')
+    
+    # if was not authn, returns false so the script can redo some steps 
     if not check_authn():
         return False
+    
+    if driver.title == 'Modify Printer - CUPS 1.6.3':
+        # find radio button
+        driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/div/form/table/tbody/tr[5]/td/input[8]').click()
+        # find continue button for validate the selection
+        driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/div/form/table/tbody/tr[6]/td[2]/input').click()
+        continue_btn = driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/div/form/table/tbody/tr[1]/td/input')
+        continue_btn.clear()
+        continue_btn.send_keys('test')
+        # find continue button and click
+        # driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/div/form/table/tbody/tr[3]/td[2]/input').click()
+        # driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/div/form/table/tbody/tr[6]/td[2]/input').click()
+        # find modify printer button and click
+        # driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/div/form/table/tbody/tr[8]/td[2]/input').click()
     return True
     
 
@@ -80,9 +101,17 @@ def remove_auth(string: str):
 
 
 def check_authn():
+    '''
+        check if the global var AUTHENT is true:
+        if it is: returns True indicating that alredy is authenticated
+        if it is not: change the url to credencials and authenticate. then go to MAINPAGE (JOBS)
+        returns False indicating that was not authenticated yet
+    '''
+
+
     global AUTHENT
     print(driver.title, driver.current_url)
-    if not(len(driver.title) > 1) and not AUTHENT:
+    if (not(len(driver.title) > 1) or driver.title == 'Unauthorized - CUPS v1.6.3') and not AUTHENT:
         print('Authentication...')
         driver.get_screenshot_as_file('auth.png')
         url = driver.current_url
@@ -92,6 +121,8 @@ def check_authn():
         url = '//'.join(url)
         AUTHENT = True
         driver.get(url)
+
+        # find the button JOBS and click. Now the scripts are AUTHeNTICATED, i can use driver.get(url) anymore
         driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/table[1]/tbody/tr[1]/td[6]').click()
         return False
     return True
@@ -122,18 +153,26 @@ try:
             print(f'number of jobs: {jobs_num}')
 
             for tr in range(1, jobs_num + 1):
-
-                printer['name'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[{tr}]/td[1]').text
-                printer['href'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[{tr}]/td[1]/a').get_attribute('href')
-                printer['state'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[{tr}]/td[6]').text
                 
-        
+                # chek if exists more than one page
+                if driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr/td[2]/form/input[5]').size == 0:
+                    printer['name'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[{tr}]/td[1]').text
+                    printer['href'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[{tr}]/td[1]/a').get_attribute('href')
+                    printer['state'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[{tr}]/td[6]').text
+                else:
+                # if exist, then the table now it is 3 not 2
+                    #'/html/body/table/tbody/tr[1]/td/table[3]/tbody/tr[1]/td[1]/a'
+                    pass
+
                 # driver.execute_script("window.open('')")
                 # driver.switch_to.window(driver.window_handles[-1])
                 #driver.get(printer['href'])
                 driver.get_screenshot_as_file('screenshot.png')
                 current_page = driver.find_element(By.TAG_NAME, 'html')
+                # go to printer page
                 goto(current_page, f'/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[{tr}]/td[1]/a')
+                printer['hostname'] = driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/div[1]/table/tbody/tr[4]/td').text.split('/')
+                print(printer['hostname'])
                 driver.get_screenshot_as_file('screenshot0.png')
 
                 if not(modify_url_printer()):
