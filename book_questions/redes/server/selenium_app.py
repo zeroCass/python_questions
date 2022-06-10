@@ -6,6 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 import subprocess
+import re
 import logging
 # logging.basicConfig(level=logging.INFO, )
 
@@ -31,7 +32,7 @@ options.add_argument('--disable-gpu')
 options.add_argument('--start-maximized')
 options.add_argument('--proxy-bypass-list=*')
 options.add_argument("--proxy-server='direct://'")
-driver = webdriver.Chrome(PATH, options=options)
+driver = webdriver.Chrome(PATH)
 
 # global function
 AUTHENT = False
@@ -63,6 +64,7 @@ def ping_printer(hostname):
     except subprocess.CalledProcessError as error:
         print(f'Ping error: {error}')
         return False
+    
 
 
 
@@ -239,8 +241,17 @@ def main():
                     modified = modify_url_printer(printer['url_set'])
                     print('Url modifed with sucess') if modified  else print('Url modifed FAIL')
                     
-                    ping_status = ping_printer(printer['hostname'])
-                    if not ping_status and modified:
+                    ping_status = False
+                    if modified: ping_status = ping_printer(printer['hostname'])
+                    print(f'DRIVER TITLE: {driver.title}')
+                    printer_name_regex = ''
+                    if driver.title != 'Jobs - CUPS 1.6.3' and driver.title != 'Modify Printer - CUPS 1.6.3':
+                        regex = re.compile(r'(\w+)-(\d+)')
+                        printer_name_regex = regex.search(driver.title).group(1)
+                    
+                    print('DEBUG: {} {}'.format(printer_name_regex, printer['name'])) 
+                    if not ping_status and modified and printer['name'] == printer_name_regex:
+                        print('ENTROU CANCELAR JOBS')
                         # if ping faild and url was modiefied, then cancell all jobs
                         cancel_printer_jobs()
                         print('{}: all jobs cancelled.'.format(printer['name']))
