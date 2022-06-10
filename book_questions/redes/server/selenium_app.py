@@ -5,13 +5,14 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
-import sys
-#import win32com.client as comclient
-
+import subprocess
+import logging
+# logging.basicConfig(level=logging.INFO, )
 
 '''
 handle release jobs
 handle jobs = 0
+handle list of jobs decrease
 '''
 
 #PATH = 'C:\Program Files (x86)\chromedriver.exe'
@@ -30,46 +31,75 @@ options.add_argument('--disable-gpu')
 options.add_argument('--start-maximized')
 options.add_argument('--proxy-bypass-list=*')
 options.add_argument("--proxy-server='direct://'")
-driver = webdriver.Chrome(PATH)
-driver.get(MAIN_PAGE)
+driver = webdriver.Chrome(PATH, options=options)
 
-# list to control the previous page[0] and the current page[1]
-url_control = ['', MAIN_PAGE]
+# global function
 AUTHENT = False
 MAIN_BTN_XPATH = '/html/body/table/tbody/tr[1]/td/table[1]/tbody/tr[1]/td[6]'
 
 
 def goto(current_page, btn_xpath):
+    '''this functions take the current_page and the button xpath
+    so find the button and click then wait until the url has changed
+    '''
     driver.find_element(By.XPATH, btn_xpath).click()
+    # this loop is really necessary ?
     while driver.find_element(By.TAG_NAME, 'html').id == current_page.id:
         time.sleep(1)
-    # try:
-    #     elem = driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/p').text
-    #     print(elem) 
-    #     WebDriverWait(driver, 10).until(EC.presence_of_element_located(By.XPATH, '/html/body/table/tbody/tr[1]/td/p'))
-    #     print('LOCATED ID')
-    # except:
-    #     print('ID NOT FOUND')
-    #     sys.exit(1)
 
+
+
+
+def ping_printer(hostname):
+    '''run the ping command on the console
+    returns false if expection was throwed
+    obs: this will print the output of the command of console
+    if this is no need, use subprocess.call()
+    '''
+    try:
+        subprocess.check_call(['ping', hostname], universal_newlines=True)
+        print('Ping sucessed. The host is ONLINE.')
+        return True
+    except subprocess.CalledProcessError as error:
+        print(f'Ping error: {error}')
+        return False
+
+
+
+def cancel_printer_jobs():
+    '''find the selection by XPATH then select
+    the purge-jobs(cancel jobs) to cancel all jobs of printer
+    '''
+    global driver
+
+    select_elem = driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/div[1]/form[1]/select')
+    select_obj = Select(select_elem)
+    select_obj.select_by_value('purge-jobs')
+    
 
 
 def modify_url_printer(url):
+    '''this function will do:
+    - find selection on the page and then select it
+    - call the check_authn() to make sure that is alreasy authenticated
+        - if was not, then return false and nothing happens
+    - select radio buttun 'Windows Printer via SAMBA
+    - modify printer url, recieve as parameter
+    - returns
+    '''
     
-
+    # global variable driver (browser)
     global driver
 
     current_url = driver.current_url
-    print(f'current_url: {current_url}')
+    print(f'current_url: {current_url}, title: {driver.title}')
 
     # find the selection element - modify-printer
     select_elem = driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/div[1]/form[2]/select')
     select_obj = Select(select_elem)
-    driver.get_screenshot_as_file('screenshot9.png')
     select_obj.select_by_value('modify-printer')
-    driver.get_screenshot_as_file('screenshot10.png')
     
-    # if was not authn, returns false so the script can redo some steps 
+    # if was not authn, returns false so the script can redo some the previous steps 
     if not check_authn():
         return False
     
@@ -84,8 +114,8 @@ def modify_url_printer(url):
         print(new_url)
 
         continue_btn.clear()
-        
         continue_btn.send_keys(new_url)
+
         # find continue button and click
         driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/div/form/table/tbody/tr[3]/td[2]/input').click()
         driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/div/form/table/tbody/tr[6]/td[2]/input').click()
@@ -102,8 +132,11 @@ def modify_url_printer(url):
 
     
 def remove_auth(string: str):
+    '''remove the authentication keys: user:pass@
+    from url, to make comparations more simple
+    '''
+
     print('REMOVE AUTH FUNCTION')
-    print('@' in string)
     if '@'  in string:
         string = string.split('@')
         print('REMOVE AUTH: https://' + string[1])
@@ -111,23 +144,14 @@ def remove_auth(string: str):
     return string
 
 
-# def change_url():
-#     # w = comclient.Dispatch('WScript.Shell')
-#     # w.AppActivate('Chrome')
-#     # w.sendkeys('^l')
-#     # w.sendkeys(url)
-#     # print(url)
-#     # w.sendkeys('{ENTER}')
 
 
 def check_authn():
+    '''check if the global var AUTHENT is true:
+    if it is: returns True indicating that alredy is authenticated
+    if it is not: change the url to credencials and authenticate. then go to MAINPAGE (JOBS)
+    returns False indicating that was not authenticated yet
     '''
-        check if the global var AUTHENT is true:
-        if it is: returns True indicating that alredy is authenticated
-        if it is not: change the url to credencials and authenticate. then go to MAINPAGE (JOBS)
-        returns False indicating that was not authenticated yet
-    '''
-
 
     global AUTHENT
     print(driver.title, driver.current_url)
@@ -151,88 +175,96 @@ def check_authn():
 
         
 
+def main():
 
-try:
-    while True:
-        # debug propurse
-        print(f'\nname: {driver.title}')
+    driver.get(MAIN_PAGE)
+    try:
+        while True:
+            # debug propurse
+            print(f'\nname: {driver.title}')
 
-        if driver.title == 'Erro de privacidade':
-            driver.find_element(By.ID, 'details-button').click()
-            driver.find_element(By.ID, 'proceed-link').click()
+            if driver.title == 'Erro de privacidade':
+                driver.find_element(By.ID, 'details-button').click()
+                driver.find_element(By.ID, 'proceed-link').click()
 
-        # check for authentication
-        check_authn()
+            # check for authentication
+            check_authn()
 
-        if remove_auth(driver.current_url) == MAIN_PAGE:
-            print('---------------------------------------------------')
-            
-            printer = {}
-            # get the number of current jobs stuck in the queue
-            jobs_num = driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/p').text
-            
-            # if there is no jobs, nothing happens, skip the logic
-            if jobs_num == 'No jobs.':
-                print(jobs_num)
-                continue
-            
-            jobs_num = int(jobs_num.split()[1])
-            print(f'number of jobs: {jobs_num}')
-            #table_num = 2
-            for tr in range(1, jobs_num + 1):
+            if remove_auth(driver.current_url) == MAIN_PAGE:
+                print('---------------------------------------------------')
                 
-                # chek if exists more than one page
-                try:
-                    driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr/td[2]/form/input[5]').size != 0
-                    table_num = 3
-                except:
-                # if exist, then the table now it is 3 not 2
-                    #'/html/body/table/tbody/tr[1]/td/table[3]/tbody/tr[1]/td[1]/a'
-                    table_num = 2
+                printer = {}
+                # get the number of current jobs stuck in the queue
+                jobs_num = driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/p').text
+                
+                # if there is no jobs, nothing happens, skip the logic
+                if jobs_num == 'No jobs.':
+                    print(jobs_num)
+                    continue
+                
+                jobs_num = int(jobs_num.split()[1])
+                print(f'number of jobs: {jobs_num}')
+                #table_num = 2
+                for tr in range(1, jobs_num + 1):
                     
-                printer['name'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[{table_num}]/tbody/tr[{tr}]/td[1]').text
-                printer['href'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[{table_num}]/tbody/tr[{tr}]/td[1]/a').get_attribute('href')
-                printer['state'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[{table_num}]/tbody/tr[{tr}]/td[6]').text
+                    # chek if exists more than one page
+                    try:
+                        driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr/td[2]/form/input[5]').size != 0
+                        table_num = 3  # this specify wich table we will serach for in the XPATH's
+                    except:
+                    # if exist, then the table now it is 3 not 2
+                        #'/html/body/table/tbody/tr[1]/td/table[3]/tbody/tr[1]/td[1]/a'
+                        table_num = 2
+                        
+                    printer['name'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[{table_num}]/tbody/tr[{tr}]/td[1]').text
+                    printer['href'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[{table_num}]/tbody/tr[{tr}]/td[1]/a').get_attribute('href')
+                    printer['state'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[{table_num}]/tbody/tr[{tr}]/td[6]').text
 
-                
-                # driver.execute_script("window.open('')")
-                # driver.switch_to.window(driver.window_handles[-1])
-                #driver.get(printer['href'])
-                
-                driver.get_screenshot_as_file('screenshot.png')
-                current_page = driver.find_element(By.TAG_NAME, 'html')
-                # go to printer page
-                goto(current_page, f'/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[{tr}]/td[1]/a')
-                
-                # get the hostname of the printer
-                printer['hostname'] = driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/div[1]/table/tbody/tr[4]/td').text.split('/')[2]
-                # based on domain, change the url settings
-                if 'saude.df.gov.br' in printer['hostname']:
-                    printer['url_set'] = r'smb://saude\user_print:trakcare@'
-                else:
-                    printer['url_set'] = r'smb://ihb.local\user_print:trakcare@'
-                print(printer['hostname'])
-                driver.get_screenshot_as_file('screenshot0.png')
-
-                if not(modify_url_printer(printer['url_set'])):
-                    print('NOT SUCESSED')
                     
-                    #driver.get(printer['href'])
+                    current_page = driver.find_element(By.TAG_NAME, 'html')
+                    # go to printer page
+                    goto(current_page, f'/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[{tr}]/td[1]/a')
+                    
+                    # get the hostname of the printer
+                    printer['hostname'] = driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/div[1]/table/tbody/tr[4]/td').text.split('/')[2]
+                    # based on domain, change the url settings
+                    if 'saude.df.gov.br' in printer['hostname']:
+                        printer['url_set'] = r'smb://saude\user_print:trakcare@'
+                    else:
+                        printer['url_set'] = r'smb://ihb.local\user_print:trakcare@'
+                    print(printer['hostname'])
+                    
 
-                time.sleep(5)
+                    # call modify_url_printer to make the proper change
+                    modified = modify_url_printer(printer['url_set'])
+                    print('Url modifed with sucess') if modified  else print('Url modifed FAIL')
+                    
+                    ping_status = ping_printer(printer['hostname'])
+                    if not ping_status and modified:
+                        # if ping faild and url was modiefied, then cancell all jobs
+                        cancel_printer_jobs()
+                        print('{}: all jobs cancelled.'.format(printer['name']))
+                                                
 
-                driver.get_screenshot_as_file('screenshot1.png')
-                print('GOING TO {}'.format(MAIN_PAGE))
-                current_page = driver.find_element(By.TAG_NAME, 'html')
-                goto(current_page, MAIN_BTN_XPATH)
+                    print('GOING TO MAIN: {}'.format(MAIN_PAGE))
+                    current_page = driver.find_element(By.TAG_NAME, 'html')
+                    goto(current_page, MAIN_BTN_XPATH)
 
+                    # get the number of current jobs stuck in the queue
+                    jobs_num = driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/p').text
+                    # if there is no jobs, nothing happens, skip the logic
+                    if jobs_num == 'No jobs.':
+                        break
+                    jobs_num = int(jobs_num.split()[1])
+                    # if the table is greather than number of jobs, quit the loop
+                    if tr > jobs_num:
+                        break
+                    
 
-                #driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/table[1]/tbody/tr[1]/td[6]').click()
-                # driver.close()
-                # driver.switch_to.window(driver.window_handles[0])
                 
+    except KeyboardInterrupt as e:
+        print('Done')
+        driver.quit()
 
-            
-except KeyboardInterrupt as e:
-    print('Done')
-    driver.quit()
+
+main()
