@@ -12,8 +12,9 @@ import logging
 
 '''
 handle release jobs
-handle jobs = 0
-handle list of jobs decrease
+handle hostname without saude.df.gov.br (check if it is a ubs)
+ok handle jobs = 0
+ok handle list of jobs decrease
 '''
 
 #PATH = 'C:\Program Files (x86)\chromedriver.exe'
@@ -243,14 +244,26 @@ def main():
                     
                     ping_status = False
                     if modified: ping_status = ping_printer(printer['hostname'])
-                    print(f'DRIVER TITLE: {driver.title}')
-                    printer_name_regex = ''
-                    if driver.title != 'Jobs - CUPS 1.6.3' and driver.title != 'Modify Printer - CUPS 1.6.3':
-                        regex = re.compile(r'(\w+)-(\d+)')
-                        printer_name_regex = regex.search(driver.title).group(1)
                     
-                    print('DEBUG: {} {}'.format(printer_name_regex, printer['name'])) 
-                    if not ping_status and modified and printer['name'] == printer_name_regex:
+                    print(f'DRIVER TITLE: {driver.title}\nSLEEPING FOR 3 SECONDS')
+                    time.sleep(3)  
+                    printer_name_regex = ''
+                    # the sleep is for wait for the browser returns to the main page of the printer
+                    if driver.title != 'Jobs - CUPS 1.6.3' and driver.title != 'Modify Printer - CUPS 1.6.3':
+                        print('ENTROU CONDICAO: ')
+                        # create a regex for exclude the numbers of printers name
+                        regex = re.compile(r'(\w+)(-\w+)?-(\w+)')
+                        printer_name_regex = regex.search(printer['name'])
+                        # if printer group is not none, we have to concatenate the name
+                        if printer_name_regex.group(2) is None:
+                            printer_name_regex = printer_name_regex.group(1)
+                        else:
+                            printer_name_regex = printer_name_regex.group(1) + printer_name_regex.group(2)
+
+
+                    print('DEBUG: regex> {} / printername> {}\n'.format(printer_name_regex, printer['name'])) 
+                    # cehck if the printer pc is offline, if it is, cancell all jobs
+                    if not ping_status and modified and printer_name_regex in driver.title:
                         print('ENTROU CANCELAR JOBS')
                         # if ping faild and url was modiefied, then cancell all jobs
                         cancel_printer_jobs()

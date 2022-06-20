@@ -1,4 +1,8 @@
 import re
-regex = re.compile(r'(\w+)-(\d+)')
-x = regex.search('CBCSCA01-8257806 - CUPS 1.10')
-print(x.group(1))
+regex = re.compile(r'(\w+)(-\w+)?-(\w+)')
+x = regex.search('CBHRAN-COLETA-8309460')
+print(x.groups())
+print(len(x.groups()))
+
+if x.group(1) + x.group(2) in 'CBHRAN-COLETA - CUPS 1.6.3':
+    print('YEAh')
