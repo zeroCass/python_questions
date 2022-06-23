@@ -1,4 +1,13 @@
+import pathlib
 import os
-PATH = os.path.join(os.environ['USERPROFILE'], '\AppData\Roaming\Python\Python310\chromedriver.exe')
+
+home = str(pathlib.Path.home())
+print(home)
+#PATH = os.path.join(home, '\AppData\Roaming\Python\Python310')
+PATH = home + '\AppData\Roaming\Python\Python310'
+print(PATH)
 for file in os.walk(PATH):
     print(file)
+
+
+
