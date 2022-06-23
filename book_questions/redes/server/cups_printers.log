@@ -1,0 +1,353 @@
+2022-06-23 08:14:36,849: Hostname:HRC-1253433.saude.df.gov.br - Ping error: Command '['ping', 'HRC-1253433.saude.df.gov.br']' returned non-zero exit status 1.
+2022-06-23 08:14:39,894: Something went wrong with SELENIUM: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/table/tbody/tr[1]/td/div[1]/form[1]/select"}
+  (Session info: chrome=102.0.5005.63)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C6D953+2414931]
+	Ordinal0 [0x00BFF5E1+1963489]
+	Ordinal0 [0x00AEC6B8+837304]
+	Ordinal0 [0x00B19500+1021184]
+	Ordinal0 [0x00B1979B+1021851]
+	Ordinal0 [0x00B46502+1205506]
+	Ordinal0 [0x00B344E4+1131748]
+	Ordinal0 [0x00B44812+1198098]
+	Ordinal0 [0x00B342B6+1131190]
+	Ordinal0 [0x00B0E860+976992]
+	Ordinal0 [0x00B0F756+980822]
+	GetHandleVerifier [0x00EDCC62+2510274]
+	GetHandleVerifier [0x00ECF760+2455744]
+	GetHandleVerifier [0x00CFEABA+551962]
+	GetHandleVerifier [0x00CFD916+547446]
+	Ordinal0 [0x00C05F3B+1990459]
+	Ordinal0 [0x00C0A898+2009240]
+	Ordinal0 [0x00C0A985+2009477]
+	Ordinal0 [0x00C13AD1+2046673]
+	BaseThreadInitThunk [0x7603FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x773E7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x773E7A6E+238]
+.
+Restarting the programming...
+2022-06-23 08:20:55,395: Unexpected error!.
+Error: ('Connection aborted.', ConnectionResetError(10054, 'Foi forçado o cancelamento de uma conexão existente pelo host remoto', None, 10054, None))
+2022-06-23 08:22:47,974: Hostname:HRC-1253433.saude.df.gov.br - Ping error: Command '['ping', 'HRC-1253433.saude.df.gov.br']' returned non-zero exit status 1.
+2022-06-23 08:22:51,017: Something went wrong with SELENIUM: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/table/tbody/tr[1]/td/div[1]/form[1]/select"}
+  (Session info: chrome=102.0.5005.63)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C6D953+2414931]
+	Ordinal0 [0x00BFF5E1+1963489]
+	Ordinal0 [0x00AEC6B8+837304]
+	Ordinal0 [0x00B19500+1021184]
+	Ordinal0 [0x00B1979B+1021851]
+	Ordinal0 [0x00B46502+1205506]
+	Ordinal0 [0x00B344E4+1131748]
+	Ordinal0 [0x00B44812+1198098]
+	Ordinal0 [0x00B342B6+1131190]
+	Ordinal0 [0x00B0E860+976992]
+	Ordinal0 [0x00B0F756+980822]
+	GetHandleVerifier [0x00EDCC62+2510274]
+	GetHandleVerifier [0x00ECF760+2455744]
+	GetHandleVerifier [0x00CFEABA+551962]
+	GetHandleVerifier [0x00CFD916+547446]
+	Ordinal0 [0x00C05F3B+1990459]
+	Ordinal0 [0x00C0A898+2009240]
+	Ordinal0 [0x00C0A985+2009477]
+	Ordinal0 [0x00C13AD1+2046673]
+	BaseThreadInitThunk [0x7603FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x773E7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x773E7A6E+238]
+.
+Restarting the programming...
+2022-06-23 08:24:11,024: Hostname:HRC-1253433.saude.df.gov.br - Ping error: Command '['ping', 'HRC-1253433.saude.df.gov.br']' returned non-zero exit status 1.
+2022-06-23 08:24:14,073: Something went wrong with SELENIUM: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/table/tbody/tr[1]/td/div[1]/form[1]/select"}
+  (Session info: chrome=102.0.5005.63)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C6D953+2414931]
+	Ordinal0 [0x00BFF5E1+1963489]
+	Ordinal0 [0x00AEC6B8+837304]
+	Ordinal0 [0x00B19500+1021184]
+	Ordinal0 [0x00B1979B+1021851]
+	Ordinal0 [0x00B46502+1205506]
+	Ordinal0 [0x00B344E4+1131748]
+	Ordinal0 [0x00B44812+1198098]
+	Ordinal0 [0x00B342B6+1131190]
+	Ordinal0 [0x00B0E860+976992]
+	Ordinal0 [0x00B0F756+980822]
+	GetHandleVerifier [0x00EDCC62+2510274]
+	GetHandleVerifier [0x00ECF760+2455744]
+	GetHandleVerifier [0x00CFEABA+551962]
+	GetHandleVerifier [0x00CFD916+547446]
+	Ordinal0 [0x00C05F3B+1990459]
+	Ordinal0 [0x00C0A898+2009240]
+	Ordinal0 [0x00C0A985+2009477]
+	Ordinal0 [0x00C13AD1+2046673]
+	BaseThreadInitThunk [0x7603FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x773E7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x773E7A6E+238]
+.
+Restarting the programming...
+2022-06-23 08:25:28,660: Hostname:HRC-1253433.saude.df.gov.br - Ping error: Command '['ping', 'HRC-1253433.saude.df.gov.br']' returned non-zero exit status 1.
+2022-06-23 08:25:31,723: Something went wrong with SELENIUM: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/table/tbody/tr[1]/td/div[1]/form[1]/select"}
+  (Session info: chrome=102.0.5005.63)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C6D953+2414931]
+	Ordinal0 [0x00BFF5E1+1963489]
+	Ordinal0 [0x00AEC6B8+837304]
+	Ordinal0 [0x00B19500+1021184]
+	Ordinal0 [0x00B1979B+1021851]
+	Ordinal0 [0x00B46502+1205506]
+	Ordinal0 [0x00B344E4+1131748]
+	Ordinal0 [0x00B44812+1198098]
+	Ordinal0 [0x00B342B6+1131190]
+	Ordinal0 [0x00B0E860+976992]
+	Ordinal0 [0x00B0F756+980822]
+	GetHandleVerifier [0x00EDCC62+2510274]
+	GetHandleVerifier [0x00ECF760+2455744]
+	GetHandleVerifier [0x00CFEABA+551962]
+	GetHandleVerifier [0x00CFD916+547446]
+	Ordinal0 [0x00C05F3B+1990459]
+	Ordinal0 [0x00C0A898+2009240]
+	Ordinal0 [0x00C0A985+2009477]
+	Ordinal0 [0x00C13AD1+2046673]
+	BaseThreadInitThunk [0x7603FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x773E7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x773E7A6E+238]
+.
+Restarting the programming...
+2022-06-23 08:26:49,598: Hostname:HRC-1253433.saude.df.gov.br - Ping error: Command '['ping', 'HRC-1253433.saude.df.gov.br']' returned non-zero exit status 1.
+2022-06-23 08:26:52,633: Something went wrong with SELENIUM: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/table/tbody/tr[1]/td/div[1]/form[1]/select"}
+  (Session info: chrome=102.0.5005.63)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C6D953+2414931]
+	Ordinal0 [0x00BFF5E1+1963489]
+	Ordinal0 [0x00AEC6B8+837304]
+	Ordinal0 [0x00B19500+1021184]
+	Ordinal0 [0x00B1979B+1021851]
+	Ordinal0 [0x00B46502+1205506]
+	Ordinal0 [0x00B344E4+1131748]
+	Ordinal0 [0x00B44812+1198098]
+	Ordinal0 [0x00B342B6+1131190]
+	Ordinal0 [0x00B0E860+976992]
+	Ordinal0 [0x00B0F756+980822]
+	GetHandleVerifier [0x00EDCC62+2510274]
+	GetHandleVerifier [0x00ECF760+2455744]
+	GetHandleVerifier [0x00CFEABA+551962]
+	GetHandleVerifier [0x00CFD916+547446]
+	Ordinal0 [0x00C05F3B+1990459]
+	Ordinal0 [0x00C0A898+2009240]
+	Ordinal0 [0x00C0A985+2009477]
+	Ordinal0 [0x00C13AD1+2046673]
+	BaseThreadInitThunk [0x7603FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x773E7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x773E7A6E+238]
+.
+Restarting the programming...
+2022-06-23 08:31:30,853 - (levelerror: ERROR): Hostname:HRC-1253433.saude.df.gov.br - Ping error: Command '['ping', 'HRC-1253433.saude.df.gov.br']' returned non-zero exit status 1.
+2022-06-23 08:31:33,897 - (levelerror: CRITICAL): Something went wrong with SELENIUM: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/table/tbody/tr[1]/td/div[1]/form[1]/select"}
+  (Session info: chrome=102.0.5005.63)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C6D953+2414931]
+	Ordinal0 [0x00BFF5E1+1963489]
+	Ordinal0 [0x00AEC6B8+837304]
+	Ordinal0 [0x00B19500+1021184]
+	Ordinal0 [0x00B1979B+1021851]
+	Ordinal0 [0x00B46502+1205506]
+	Ordinal0 [0x00B344E4+1131748]
+	Ordinal0 [0x00B44812+1198098]
+	Ordinal0 [0x00B342B6+1131190]
+	Ordinal0 [0x00B0E860+976992]
+	Ordinal0 [0x00B0F756+980822]
+	GetHandleVerifier [0x00EDCC62+2510274]
+	GetHandleVerifier [0x00ECF760+2455744]
+	GetHandleVerifier [0x00CFEABA+551962]
+	GetHandleVerifier [0x00CFD916+547446]
+	Ordinal0 [0x00C05F3B+1990459]
+	Ordinal0 [0x00C0A898+2009240]
+	Ordinal0 [0x00C0A985+2009477]
+	Ordinal0 [0x00C13AD1+2046673]
+	BaseThreadInitThunk [0x7603FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x773E7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x773E7A6E+238]
+.
+Restarting the programming...
+2022-06-23 08:31:57,346 - (levelerror: ERROR): Hostname:HRC-1253433.saude.df.gov.br - Ping error: Command '['ping', 'HRC-1253433.saude.df.gov.br']' returned non-zero exit status 1.
+2022-06-23 08:32:00,403 - (levelerror: CRITICAL): Something went wrong with SELENIUM: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/table/tbody/tr[1]/td/div[1]/form[1]/select"}
+  (Session info: chrome=102.0.5005.63)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C6D953+2414931]
+	Ordinal0 [0x00BFF5E1+1963489]
+	Ordinal0 [0x00AEC6B8+837304]
+	Ordinal0 [0x00B19500+1021184]
+	Ordinal0 [0x00B1979B+1021851]
+	Ordinal0 [0x00B46502+1205506]
+	Ordinal0 [0x00B344E4+1131748]
+	Ordinal0 [0x00B44812+1198098]
+	Ordinal0 [0x00B342B6+1131190]
+	Ordinal0 [0x00B0E860+976992]
+	Ordinal0 [0x00B0F756+980822]
+	GetHandleVerifier [0x00EDCC62+2510274]
+	GetHandleVerifier [0x00ECF760+2455744]
+	GetHandleVerifier [0x00CFEABA+551962]
+	GetHandleVerifier [0x00CFD916+547446]
+	Ordinal0 [0x00C05F3B+1990459]
+	Ordinal0 [0x00C0A898+2009240]
+	Ordinal0 [0x00C0A985+2009477]
+	Ordinal0 [0x00C13AD1+2046673]
+	BaseThreadInitThunk [0x7603FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x773E7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x773E7A6E+238]
+.
+Restarting the programming...
+2022-06-23 08:32:22,776 - (levelerror: ERROR): Hostname:HRC-1253433.saude.df.gov.br - Ping error: Command '['ping', 'HRC-1253433.saude.df.gov.br']' returned non-zero exit status 1.
+2022-06-23 08:32:25,806 - (levelerror: CRITICAL): Something went wrong with SELENIUM: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/table/tbody/tr[1]/td/div[1]/form[1]/select"}
+  (Session info: chrome=102.0.5005.63)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C6D953+2414931]
+	Ordinal0 [0x00BFF5E1+1963489]
+	Ordinal0 [0x00AEC6B8+837304]
+	Ordinal0 [0x00B19500+1021184]
+	Ordinal0 [0x00B1979B+1021851]
+	Ordinal0 [0x00B46502+1205506]
+	Ordinal0 [0x00B344E4+1131748]
+	Ordinal0 [0x00B44812+1198098]
+	Ordinal0 [0x00B342B6+1131190]
+	Ordinal0 [0x00B0E860+976992]
+	Ordinal0 [0x00B0F756+980822]
+	GetHandleVerifier [0x00EDCC62+2510274]
+	GetHandleVerifier [0x00ECF760+2455744]
+	GetHandleVerifier [0x00CFEABA+551962]
+	GetHandleVerifier [0x00CFD916+547446]
+	Ordinal0 [0x00C05F3B+1990459]
+	Ordinal0 [0x00C0A898+2009240]
+	Ordinal0 [0x00C0A985+2009477]
+	Ordinal0 [0x00C13AD1+2046673]
+	BaseThreadInitThunk [0x7603FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x773E7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x773E7A6E+238]
+.
+Restarting the programming...
+2022-06-23 08:45:01,791 - (levelerror: ERROR): Hostname:HRC-1253433.saude.df.gov.br - Ping error: Command '['ping', 'HRC-1253433.saude.df.gov.br']' returned non-zero exit status 1.
+2022-06-23 08:46:34,691 - (levelerror: ERROR): Hostname:HRC-1253433.saude.df.gov.br - Ping error: Command '['ping', 'HRC-1253433.saude.df.gov.br']' returned non-zero exit status 1.
+2022-06-23 08:48:47,850 - (levelerror: ERROR): Hostname:HRC-1253433.saude.df.gov.br - Ping error: Command '['ping', 'HRC-1253433.saude.df.gov.br']' returned non-zero exit status 1.
+2022-06-23 08:51:06,630 - (levelerror: ERROR): Hostname:HRC-1253433.saude.df.gov.br - Ping error: Command '['ping', 'HRC-1253433.saude.df.gov.br']' returned non-zero exit status 1.
+2022-06-23 08:54:57,054 - (levelerror: CRITICAL): Something went wrong with SELENIUM: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/table/tbody/tr[1]/td/div[1]/form[1]/select"}
+  (Session info: chrome=102.0.5005.63)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C6D953+2414931]
+	Ordinal0 [0x00BFF5E1+1963489]
+	Ordinal0 [0x00AEC6B8+837304]
+	Ordinal0 [0x00B19500+1021184]
+	Ordinal0 [0x00B1979B+1021851]
+	Ordinal0 [0x00B46502+1205506]
+	Ordinal0 [0x00B344E4+1131748]
+	Ordinal0 [0x00B44812+1198098]
+	Ordinal0 [0x00B342B6+1131190]
+	Ordinal0 [0x00B0E860+976992]
+	Ordinal0 [0x00B0F756+980822]
+	GetHandleVerifier [0x00EDCC62+2510274]
+	GetHandleVerifier [0x00ECF760+2455744]
+	GetHandleVerifier [0x00CFEABA+551962]
+	GetHandleVerifier [0x00CFD916+547446]
+	Ordinal0 [0x00C05F3B+1990459]
+	Ordinal0 [0x00C0A898+2009240]
+	Ordinal0 [0x00C0A985+2009477]
+	Ordinal0 [0x00C13AD1+2046673]
+	BaseThreadInitThunk [0x7603FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x773E7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x773E7A6E+238]
+.
+Restarting the programming...
+2022-06-23 09:03:22,756 - (levelerror: CRITICAL): Something went wrong with SELENIUM: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[2]/td[1]"}
+  (Session info: chrome=102.0.5005.63)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C6D953+2414931]
+	Ordinal0 [0x00BFF5E1+1963489]
+	Ordinal0 [0x00AEC6B8+837304]
+	Ordinal0 [0x00B19500+1021184]
+	Ordinal0 [0x00B1979B+1021851]
+	Ordinal0 [0x00B46502+1205506]
+	Ordinal0 [0x00B344E4+1131748]
+	Ordinal0 [0x00B44812+1198098]
+	Ordinal0 [0x00B342B6+1131190]
+	Ordinal0 [0x00B0E860+976992]
+	Ordinal0 [0x00B0F756+980822]
+	GetHandleVerifier [0x00EDCC62+2510274]
+	GetHandleVerifier [0x00ECF760+2455744]
+	GetHandleVerifier [0x00CFEABA+551962]
+	GetHandleVerifier [0x00CFD916+547446]
+	Ordinal0 [0x00C05F3B+1990459]
+	Ordinal0 [0x00C0A898+2009240]
+	Ordinal0 [0x00C0A985+2009477]
+	Ordinal0 [0x00C13AD1+2046673]
+	BaseThreadInitThunk [0x7603FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x773E7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x773E7A6E+238]
+.
+Restarting the programming...
+2022-06-23 09:05:57,342 - (levelerror: CRITICAL): Something went wrong with SELENIUM: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[2]/td[1]"}
+  (Session info: chrome=102.0.5005.63)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C6D953+2414931]
+	Ordinal0 [0x00BFF5E1+1963489]
+	Ordinal0 [0x00AEC6B8+837304]
+	Ordinal0 [0x00B19500+1021184]
+	Ordinal0 [0x00B1979B+1021851]
+	Ordinal0 [0x00B46502+1205506]
+	Ordinal0 [0x00B344E4+1131748]
+	Ordinal0 [0x00B44812+1198098]
+	Ordinal0 [0x00B342B6+1131190]
+	Ordinal0 [0x00B0E860+976992]
+	Ordinal0 [0x00B0F756+980822]
+	GetHandleVerifier [0x00EDCC62+2510274]
+	GetHandleVerifier [0x00ECF760+2455744]
+	GetHandleVerifier [0x00CFEABA+551962]
+	GetHandleVerifier [0x00CFD916+547446]
+	Ordinal0 [0x00C05F3B+1990459]
+	Ordinal0 [0x00C0A898+2009240]
+	Ordinal0 [0x00C0A985+2009477]
+	Ordinal0 [0x00C13AD1+2046673]
+	BaseThreadInitThunk [0x7603FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x773E7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x773E7A6E+238]
+.
+Restarting the programming...
+2022-06-23 10:02:35,614 - (levelerror: CRITICAL): Unexpected error!.
+Error: Message: invalid selector: The result of the xpath expression "/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[1]/td[6]/text()[2]" is: [object Text]. It should be an element.
+  (Session info: headless chrome=102.0.5005.63)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C6D953+2414931]
+	Ordinal0 [0x00BFF5E1+1963489]
+	Ordinal0 [0x00AEC6B8+837304]
+	Ordinal0 [0x00AEF0B4+848052]
+	Ordinal0 [0x00AEEF72+847730]
+	Ordinal0 [0x00AEF200+848384]
+	Ordinal0 [0x00B19215+1020437]
+	Ordinal0 [0x00B1979B+1021851]
+	Ordinal0 [0x00B46502+1205506]
+	Ordinal0 [0x00B344E4+1131748]
+	Ordinal0 [0x00B44812+1198098]
+	Ordinal0 [0x00B342B6+1131190]
+	Ordinal0 [0x00B0E860+976992]
+	Ordinal0 [0x00B0F756+980822]
+	GetHandleVerifier [0x00EDCC62+2510274]
+	GetHandleVerifier [0x00ECF760+2455744]
+	GetHandleVerifier [0x00CFEABA+551962]
+	GetHandleVerifier [0x00CFD916+547446]
+	Ordinal0 [0x00C05F3B+1990459]
+	Ordinal0 [0x00C0A898+2009240]
+	Ordinal0 [0x00C0A985+2009477]
+	Ordinal0 [0x00C13AD1+2046673]
+	BaseThreadInitThunk [0x7603FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x773E7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x773E7A6E+238]
+

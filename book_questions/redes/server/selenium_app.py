@@ -6,9 +6,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import selenium.common.exceptions as selenium_exception
 import time
+import datetime
 import subprocess
 import re
-import logging
 from logging_file import logger
 
 '''
@@ -35,21 +35,21 @@ options.add_argument('--disable-gpu')
 options.add_argument('--start-maximized')
 options.add_argument('--proxy-bypass-list=*')
 options.add_argument("--proxy-server='direct://'")
-driver = webdriver.Chrome(PATH)
+driver = webdriver.Chrome(PATH, options=options)
 
 # global function
 AUTHENT = False
 MAIN_BTN_XPATH = '/html/body/table/tbody/tr[1]/td/table[1]/tbody/tr[1]/td[6]'
-TIME2SLEEP = 60
+TIME2SLEEP = 5
 
 
-def goto(current_page, btn_xpath):
+def goto(current_page_id, btn_xpath):
     '''this functions take the current_page and the button xpath
     so find the button and click then wait until the url has changed
     '''
     driver.find_element(By.XPATH, btn_xpath).click()
     # this loop is really necessary ?
-    while driver.find_element(By.TAG_NAME, 'html').id == current_page.id:
+    while driver.find_element(By.TAG_NAME, 'html').id == current_page_id:
         time.sleep(1)
 
 
@@ -81,7 +81,8 @@ def release_jobs(printer_name):
     '''
 
     global driver
-    
+    print(printer_name in driver.title, f'\n{printer_name} - {driver.title}')
+    time.sleep(5)
     if printer_name in driver.title:
         jobs_num = ''
         old_jobs_num = 0
@@ -235,10 +236,11 @@ def check_authn():
         
 
 def main():
-    
+    global AUTHENT
+    AUTHENT = False
     driver.get(MAIN_PAGE)
     try:
-        current_time = time.time()
+        current_time = time.time() 
         while True:
 
             if time.time() - current_time < TIME2SLEEP:
@@ -267,11 +269,11 @@ def main():
                 
                 # if there is no jobs, nothing happens, skip the logic
                 if jobs_num == 'No jobs.':
-                    print(jobs_num)
+                    logger.info(jobs_num)
                     continue
                 
                 jobs_num = int(jobs_num.split()[1])
-                print(f'number of jobs: {jobs_num}')
+                logger.info(f'number of jobs: {jobs_num}')
                 #table_num = 2
                 for tr in range(1, jobs_num + 1):
                     
@@ -287,11 +289,16 @@ def main():
                     printer['name'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[{table_num}]/tbody/tr[{tr}]/td[1]').text
                     printer['href'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[{table_num}]/tbody/tr[{tr}]/td[1]/a').get_attribute('href')
                     printer['state'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[{table_num}]/tbody/tr[{tr}]/td[6]').text
-
+                    #printer['datetime'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr/td[6]').text
+                    
+                    print(printer['state'].split('\n'))
+                    #continue
+                    #printer['page_id'] = driver.find_element(By.TAG_NAME, 'html').id
                     
                     current_page = driver.find_element(By.TAG_NAME, 'html')
                     # go to printer page
                     goto(current_page, f'/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[{tr}]/td[1]/a')
+                    printer['page_id'] = driver.find_element(By.TAG_NAME, 'html').id
                     
                     # get the hostname of the printer
                     printer['hostname'] = driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/div[1]/table/tbody/tr[4]/td').text.split('/')[2]
@@ -300,22 +307,16 @@ def main():
                         printer['url_set'] = r'smb://saude\user_print:trakcare@'
                     else:
                         printer['url_set'] = r'smb://ihb.local\user_print:trakcare@'
-                    print(printer['hostname'])
-                    
+                    logger.info(printer['hostname'])
 
-                    # call modify_url_printer to make the proper change
-                    modified = modify_url_printer(printer['url_set'])
-                    print('Url modifed with sucess') if modified  else print('Url modifed FAIL')
-                    
-                    ping_status = False
-                    if modified: ping_status = ping_printer(printer['hostname'])
-                    
-                    logger.debug(f'Driver title: {driver.title} - SLEEPING for 3 seconds.')
-                    time.sleep(3)  
+                    current_page = driver.find_element(By.TAG_NAME, 'html')
+
+
                     printer_name_regex = ''
                     # the sleep is for wait for the browser returns to the main page of the printer
                     if driver.title != 'Jobs - CUPS 1.6.3' and driver.title != 'Modify Printer - CUPS 1.6.3':
                         
+                        print('The current page is the MAIN page printer')
                         logger.debug('The current page is the MAIN page printer')
                         
                         # create a regex for exclude the numbers of printers name
@@ -326,8 +327,21 @@ def main():
                             printer_name_regex = printer_name_regex.group(1)
                         else:
                             printer_name_regex = printer_name_regex.group(1) + printer_name_regex.group(2)
+                   
+                   
+                    # call modify_url_printer to make the proper change
+                    modified = modify_url_printer(printer['url_set'])
+                    logger.info('Url modifed with sucess') if modified  else logger.info('Url modifed FAIL')
+                    
+                    ping_status = True
+                    if modified: ping_status = ping_printer(printer['hostname'])
+                    
+                    
+                     
+        
 
                     logger.debug('DEBUG: regex> {} / printername> {}\n'.format(printer_name_regex, printer['name']))
+                    print('DEBUG: regex> {} / printername> {}\n'.format(printer_name_regex, printer['name']))
                     # cehck if the printer pc is offline, if it is, cancell all jobs
                     if not ping_status and modified and printer_name_regex in driver.title:
                         logger.debug('Cancel all jobs if Statment')
@@ -336,11 +350,24 @@ def main():
                         logger.warning('{}: all jobs cancelled.'.format(printer['name']))
                     elif ping_status and modified and printer_name_regex in driver.title:
                         release_jobs(printer_name_regex)
+                    elif not ping_status:
+                        # auxliar timer
+                        aux_timer = time.time()
+                        # while is not in printers page and the timer not exceded 10s, waint for the browser
+                        while (printer_name_regex not in driver.title) and (time.time() - aux_timer < 10):
+                            time.sleep(1)
+                            print('loop')
+                        try:
+                            print('Try to cancel jobs')
+                            cancel_printer_jobs()
+                        except:
+                            print('Something goes MUCH WRONG. SKINPING THIS STEP')
+                            pass
                                                 
 
                     logger.debug('Returning to MAIN...')
-                    current_page = driver.find_element(By.TAG_NAME, 'html')
-                    goto(current_page, MAIN_BTN_XPATH)
+                    #current_page = driver.find_element(By.TAG_NAME, 'html')
+                    goto(printer['page_id'], MAIN_BTN_XPATH)
 
                     # get the number of current jobs stuck in the queue
                     jobs_num = driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/p').text
