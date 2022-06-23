@@ -13,6 +13,7 @@ import logging
 '''
 handle release jobs
 handle hostname without saude.df.gov.br (check if it is a ubs)
+handle printer name xpath not found
 ok handle jobs = 0
 ok handle list of jobs decrease
 '''
