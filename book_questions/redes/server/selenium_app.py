@@ -386,8 +386,7 @@ def main():
                         break
                 
             # refresh the timer
-            current_time = time.time()
-                    
+            current_time = time.time()               
 
                 
     except KeyboardInterrupt as e:
