@@ -1,26 +1,30 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.support.select import Select
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 import selenium.common.exceptions as selenium_exception
 import time
 import datetime
 import subprocess
 import re
-from logging_file import logger
 import locale
+from logging_file import logger
+
 
 '''
 handle ping host inacessivel
 log to file ping, cancell e release jobs
+verificar sleep in relese jobs
+verificar logica no final do loop
 '''
 
-#PATH = 'C:\Program Files (x86)\chromedriver.exe'
+# set the location to pt_BR for datetime gets the corret parameters
 locale.setlocale(locale.LC_TIME, 'pt_BR')
+
 PATH = r'C:\Users\05694223101\AppData\Roaming\Python\Python310\chromedriver.exe'
 MAIN_PAGE = 'https://10.233.87.11:631/jobs/'
+
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
 options.add_argument('--ignore-certificate-errors')
@@ -34,24 +38,24 @@ options.add_argument('--disable-gpu')
 options.add_argument('--start-maximized')
 options.add_argument('--proxy-bypass-list=*')
 options.add_argument("--proxy-server='direct://'")
-driver = webdriver.Chrome(PATH, options=options)
+
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
 # global function
 AUTHENT = False
 MAIN_BTN_XPATH = '/html/body/table/tbody/tr[1]/td/table[1]/tbody/tr[1]/td[6]'
-TIME2SLEEP = 5
+TIME2SLEEP = 30
 
 
-def goto(current_page_id, btn_xpath):
+def goto(current_page_title, btn_xpath):
     '''this functions take the current_page and the button xpath
     so find the button and click then wait until the url has changed
     '''
     driver.find_element(By.XPATH, btn_xpath).click()
     # this loop is really necessary ?
-    while driver.find_element(By.TAG_NAME, 'html').id == current_page_id:
+    while driver.title == current_page_title:
+        logger.info('Sleeping until the GOTO page is loading...')
         time.sleep(1)
-
-
 
 
 def ping_printer(hostname, printer_name):
@@ -77,7 +81,6 @@ def ping_printer(hostname, printer_name):
         return False
     
 
-
 def release_jobs(printer_name):
     '''check if there is active jobs then:
     click on release jobs button and waits to return to the original page
@@ -88,7 +91,7 @@ def release_jobs(printer_name):
     '''
 
     global driver
-    print(printer_name in driver.title, f'\n{printer_name} - {driver.title}')
+    logger.debug(printer_name in driver.title, f'\n{printer_name} - {driver.title}')
     time.sleep(5)
     if printer_name in driver.title:
         jobs_num = ''
@@ -106,9 +109,9 @@ def release_jobs(printer_name):
                 # get the jobs number and compare to the old - if is the same, then the release option is going wrong
                 jobs_num = int(jobs_num.split()[1])
                 if jobs_num == old_jobs_num:
-                    logger.error('Release not sucessed, something is wrong.\nAll jobs will be canceled')
+                    logger.error(f'(Printer: {printer_name}): Release not sucessed, something is wrong.\nAll jobs will be canceled')
                     # if there is something wrong, then canceled all jobs
-                    cancel_printer_jobs()
+                    cancel_printer_jobs(printer_name)
                     fail = True
 
                 # jobs number will influe the XPATH, if it greather than 1, the form[x] is used. otherwise, form is used    
@@ -130,21 +133,21 @@ def release_jobs(printer_name):
                     time.sleep(1)
                 old_jobs_num = jobs_num
             except:
-                logger.warning('Jobs number label not found.')
+                logger.info('Jobs number label not found.')
                 return 
 
 
-def cancel_printer_jobs():
+def cancel_printer_jobs(printer_name):
     '''find the selection by XPATH then select
     the purge-jobs(cancel jobs) to cancel all jobs of printer
     '''
     global driver
 
+    logger.warning(f'(Printer: {printer_name}): Cancelling all jobs!')    
     select_elem = driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/div[1]/form[1]/select')
     select_obj = Select(select_elem)
     select_obj.select_by_value('purge-jobs')
     
-
 
 def modify_url_printer(url):
     '''this function will do:
@@ -179,7 +182,7 @@ def modify_url_printer(url):
         continue_btn = driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/div/form/table/tbody/tr[1]/td/input')
 
         new_url = url + continue_btn.get_attribute('value').split('//')[1]
-        print(new_url)
+        logger.debug(f'New URL: {new_url}')
 
         continue_btn.clear()
         continue_btn.send_keys(new_url)
@@ -196,8 +199,6 @@ def modify_url_printer(url):
 
     return True
     
-
-
     
 def remove_auth(string: str):
     '''remove the authentication keys: user:pass@
@@ -211,8 +212,6 @@ def remove_auth(string: str):
     return string
 
 
-
-
 def check_authn():
     '''check if the global var AUTHENT is true:
     if it is: returns True indicating that alredy is authenticated
@@ -222,7 +221,7 @@ def check_authn():
 
     global AUTHENT
 
-    print(driver.title, driver.current_url)
+    logger.debug(f'PAGE_TITLE:{driver.title} - URL:{driver.current_url}')
     if (not(len(driver.title) > 1) or driver.title == 'Unauthorized - CUPS v1.6.3') and not AUTHENT:
         logger.debug('Authentication in process...')
         url = driver.current_url
@@ -239,9 +238,6 @@ def check_authn():
     return True
 
     
-
-        
-
 def main():
     global AUTHENT
     AUTHENT = False
@@ -254,7 +250,7 @@ def main():
                 continue
 
             # debug propurse
-            logger.info(f'Time passed - WORKS IN ON!\nPage title: {driver.title}')
+            logger.info(f'Time passed - WORKS IN ON!\nPage title: {driver.title}\n')
             logger.debug('The page it will refresh.')
             driver.refresh()
             # refresh the timer
@@ -297,26 +293,25 @@ def main():
                     printer['href'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[{table_num}]/tbody/tr[{tr}]/td[1]/a').get_attribute('href')
                     printer['state'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[{table_num}]/tbody/tr[{tr}]/td[6]').text
                     
-                    
-                    
+                    # get the time of processing jobs in state (of the printer)
                     processing_time = printer['state'].split('\n')[1]
                     processing_time = processing_time.split(' ')[:-2]
                     processing_time = ' '.join(processing_time)
+                    # convert the string extract in datetime obj
                     dt = datetime.datetime.strptime(processing_time, '%a %d %b %Y %H:%M:%S')
+                    # get the current time - job processing time
                     time_calc = datetime.datetime.now() - dt
+                    # if the time_calc is lass than 2min, then the jobs maybe is not stuck, so we need to skip the script process
                     if not time_calc.seconds  > 120:
                         logger.info('Processing time is less than 2min. Skiping the script...')
                         continue
                     
-                    
-                    current_page = driver.find_element(By.TAG_NAME, 'html')
                     # go to printer page
-                    goto(current_page, f'/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[{tr}]/td[1]/a')
-                    printer['page_id'] = driver.find_element(By.TAG_NAME, 'html').id
-                    
+                    goto(driver.title, f'/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[{tr}]/td[1]/a')
+
+                    # get the printer location
                     printer['location'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/div[1]/table/tbody/tr[2]/td').text
-                    logger.debug('PRINTER_LOCATION: {}'.format(printer['location']))
-                    
+                    logger.debug('PRINTER_LOCATION: {}'.format(printer['location']))    
                     
                     # get the hostname of the printer
                     printer['hostname'] = driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/div[1]/table/tbody/tr[4]/td').text.split('/')[2]
@@ -327,11 +322,9 @@ def main():
                         printer['url_set'] = r'smb://ihb.local\user_print:trakcare@'
                     logger.info(printer['hostname'])
 
-                    current_page = driver.find_element(By.TAG_NAME, 'html')
 
-
-                    printer_name_regex = ''
-                    # the sleep is for wait for the browser returns to the main page of the printer
+                    printer_name_regex = '' # variable to get the name of the printer formatted by a specific way
+                    # ensure that current page is the main page printer
                     if driver.title != 'Jobs - CUPS 1.6.3' and driver.title != 'Modify Printer - CUPS 1.6.3':
                         logger.debug('The current page is the MAIN page printer')
                         
@@ -351,19 +344,16 @@ def main():
                     
                     ping_status = True
                     if modified: ping_status = ping_printer(printer['hostname'], printer_name_regex)
-                    
-                    
-                     
-        
-
-                    logger.debug('DEBUG: regex> {} / printername> {}\n'.format(printer_name_regex, printer['name']))
+                            
+                    logger.debug('regex: {} -  printername:{}\n'.format(printer_name_regex, printer['name']))
                     logger.debug(f'modified: {modified} - ping_status: {ping_status} - printers_name in title: {printer_name_regex in driver.title}')
                     # cehck if the printer pc is offline, if it is, cancell all jobs
                     if not ping_status and modified and printer_name_regex in driver.title:
                         logger.debug('Cancel all jobs if Statment')
                         # if ping faild and url was modiefied, then cancell all jobs
-                        cancel_printer_jobs()
+                        cancel_printer_jobs(printer['name'])
                         logger.warning('{}: all jobs cancelled.'.format(printer['name']))
+                    # if the pc in on, url has modiefed and the current page is the main page printer, then try to release jobs
                     elif ping_status and modified and printer_name_regex in driver.title:
                         release_jobs(printer_name_regex)
                     elif not ping_status:
@@ -372,19 +362,19 @@ def main():
                         # while is not in printers page and the timer not exceded 10s, waint for the browser
                         while (printer_name_regex not in driver.title) and (time.time() - aux_timer < 10):
                             time.sleep(1)
-                            print('loop')
+                            logger.info('Ping FAIL. Waiting to return to printers PAGE...')
                         try:
-                            print('Try to cancel jobs')
-                            cancel_printer_jobs()
+                            logger.warning('Trying to cancel printer {} jobs'.format(printer['name']))
+                            cancel_printer_jobs(printer['name'])
                         except:
-                            print('Something goes MUCH WRONG. SKINPING THIS STEP')
+                            logger.error('Something goes MUCH WRONG. SKINPING THIS STEP')
                             pass
                                                 
 
                     logger.debug('Returning to MAIN...')
-                    #current_page = driver.find_element(By.TAG_NAME, 'html')
-                    goto(printer['page_id'], MAIN_BTN_XPATH)
+                    goto(driver.title, MAIN_BTN_XPATH)
 
+                    # THIS LOGIC IS NECESSARY ???
                     # get the number of current jobs stuck in the queue
                     jobs_num = driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/p').text
                     # if there is no jobs, nothing happens, skip the logic
@@ -404,9 +394,9 @@ def main():
         logger.info('The program finshed by USER.\nDONE.')
         driver.quit()
     except selenium_exception.NoSuchElementException as e:
-        logger.critical(f'Something went wrong with SELENIUM: {e}.\nRestarting the programming...')
+        logger.critical(f'\n------------------------------\nSomething went wrong with SELENIUM: {e}.\nRestarting the programming...\n------------------------------\n')
         main()
     except Exception as e:
-        logger.critical(f'Unexpected error!.\nError: {e}')
+        logger.critical(f'\n------------------------------\nUnexpected error!.\nError: {e}\n------------------------------\n')
 
 main()
