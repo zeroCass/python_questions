@@ -10,16 +10,15 @@ import datetime
 import subprocess
 import re
 from logging_file import logger
+import locale
 
 '''
-handle release jobs
-handle hostname without saude.df.gov.br (check if it is a ubs)
-atualizar apos algum tempo
-ok handle jobs = 0
-ok handle list of jobs decrease
+handle ping host inacessivel
+log to file ping, cancell e release jobs
 '''
 
 #PATH = 'C:\Program Files (x86)\chromedriver.exe'
+locale.setlocale(locale.LC_TIME, 'pt_BR')
 PATH = r'C:\Users\05694223101\AppData\Roaming\Python\Python310\chromedriver.exe'
 MAIN_PAGE = 'https://10.233.87.11:631/jobs/'
 options = webdriver.ChromeOptions()
@@ -55,18 +54,26 @@ def goto(current_page_id, btn_xpath):
 
 
 
-def ping_printer(hostname):
+def ping_printer(hostname, printer_name):
     '''run the ping command on the console
     returns false if expection was throwed
     obs: this will print the output of the command of console
     if this is no need, use subprocess.call()
     '''
+    global driver
+    
     try:
         subprocess.check_call(['ping', hostname], universal_newlines=True)
         logger.info('Ping sucessed. The host is ONLINE.')
+        while not printer_name in driver.title:
+            time.sleep(1)
+            logger.debug(f'ping_printer(function): sleeping until returns to printers page')
         return True
     except subprocess.CalledProcessError as error:
         logger.error(f'Hostname:{hostname} - Ping error: {error}')
+        while not printer_name in driver.title:
+            time.sleep(1)
+            logger.debug(f'ping_printer(function): sleeping until returns to printers page')
         return False
     
 
@@ -289,21 +296,32 @@ def main():
                     printer['name'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[{table_num}]/tbody/tr[{tr}]/td[1]').text
                     printer['href'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[{table_num}]/tbody/tr[{tr}]/td[1]/a').get_attribute('href')
                     printer['state'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[{table_num}]/tbody/tr[{tr}]/td[6]').text
-                    #printer['datetime'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr/td[6]').text
                     
-                    print(printer['state'].split('\n'))
-                    #continue
-                    #printer['page_id'] = driver.find_element(By.TAG_NAME, 'html').id
+                    
+                    
+                    processing_time = printer['state'].split('\n')[1]
+                    processing_time = processing_time.split(' ')[:-2]
+                    processing_time = ' '.join(processing_time)
+                    dt = datetime.datetime.strptime(processing_time, '%a %d %b %Y %H:%M:%S')
+                    time_calc = datetime.datetime.now() - dt
+                    if not time_calc.seconds  > 120:
+                        logger.info('Processing time is less than 2min. Skiping the script...')
+                        continue
+                    
                     
                     current_page = driver.find_element(By.TAG_NAME, 'html')
                     # go to printer page
                     goto(current_page, f'/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[{tr}]/td[1]/a')
                     printer['page_id'] = driver.find_element(By.TAG_NAME, 'html').id
                     
+                    printer['location'] = driver.find_element(By.XPATH, f'/html/body/table/tbody/tr[1]/td/div[1]/table/tbody/tr[2]/td').text
+                    logger.debug('PRINTER_LOCATION: {}'.format(printer['location']))
+                    
+                    
                     # get the hostname of the printer
                     printer['hostname'] = driver.find_element(By.XPATH, '/html/body/table/tbody/tr[1]/td/div[1]/table/tbody/tr[4]/td').text.split('/')[2]
-                    # based on domain, change the url settings
-                    if 'saude.df.gov.br' in printer['hostname']:
+                    # based on domain and the printer location, change the url settings
+                    if 'saude.df.gov.br' in printer['hostname'] and 'UPA' not in printer['location']:
                         printer['url_set'] = r'smb://saude\user_print:trakcare@'
                     else:
                         printer['url_set'] = r'smb://ihb.local\user_print:trakcare@'
@@ -315,8 +333,6 @@ def main():
                     printer_name_regex = ''
                     # the sleep is for wait for the browser returns to the main page of the printer
                     if driver.title != 'Jobs - CUPS 1.6.3' and driver.title != 'Modify Printer - CUPS 1.6.3':
-                        
-                        print('The current page is the MAIN page printer')
                         logger.debug('The current page is the MAIN page printer')
                         
                         # create a regex for exclude the numbers of printers name
@@ -334,14 +350,14 @@ def main():
                     logger.info('Url modifed with sucess') if modified  else logger.info('Url modifed FAIL')
                     
                     ping_status = True
-                    if modified: ping_status = ping_printer(printer['hostname'])
+                    if modified: ping_status = ping_printer(printer['hostname'], printer_name_regex)
                     
                     
                      
         
 
                     logger.debug('DEBUG: regex> {} / printername> {}\n'.format(printer_name_regex, printer['name']))
-                    print('DEBUG: regex> {} / printername> {}\n'.format(printer_name_regex, printer['name']))
+                    logger.debug(f'modified: {modified} - ping_status: {ping_status} - printers_name in title: {printer_name_regex in driver.title}')
                     # cehck if the printer pc is offline, if it is, cancell all jobs
                     if not ping_status and modified and printer_name_regex in driver.title:
                         logger.debug('Cancel all jobs if Statment')

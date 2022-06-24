@@ -1,5 +1,7 @@
-import time
+from calendar import month, weekday
 import datetime
+import time
+import locale
 
 # time.time() return the total of seconds passed sice 1970
 # time.sleep(x) pause(sleep) the curent thread for x seconds
@@ -41,3 +43,10 @@ print(f'Mil dias tem: {thousand.total_seconds()} segundos')
 
 # it is possible convert time to a formated string using strftime()
 # we can convert string into time through strptime(), but we need specify the format of string (ex: %y/%m/%d)
+
+locale.setlocale(locale.LC_TIME, 'pt_BR')
+processing_time = 'Sex 24 Jun 2022 08:02:32'
+dt = datetime.datetime.strptime(processing_time, '%a %d %b %Y %H:%M:%S')
+calc = datetime.datetime.now() - dt
+print(calc)
+print(calc.seconds / 60)
