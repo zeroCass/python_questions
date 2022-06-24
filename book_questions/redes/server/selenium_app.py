@@ -52,7 +52,11 @@ def goto(current_page_title, btn_xpath):
     so find the button and click then wait until the url has changed
     '''
     driver.find_element(By.XPATH, btn_xpath).click()
+    # if the title is the MAIN PAGE, then returns
+    if driver.title == 'Jobs - CUPS 1.6.3':
+        return
     # this loop is really necessary ?
+    logger.debug(f'CURRENT TITLE: {current_page_title} - DRIVER TITLE: {driver.title}')
     while driver.title == current_page_title:
         logger.info('Sleeping until the GOTO page is loading...')
         time.sleep(1)
@@ -91,8 +95,9 @@ def release_jobs(printer_name):
     '''
 
     global driver
-    logger.debug(printer_name in driver.title, f'\n{printer_name} - {driver.title}')
-    time.sleep(5)
+    logger.debug(f'PRINTER NAME IN TITLE: {printer_name in driver.title}, \n{printer_name} - {driver.title}')
+    # esse sleep aqui ???
+    #time.sleep(5)
     if printer_name in driver.title:
         jobs_num = ''
         old_jobs_num = 0
@@ -226,7 +231,7 @@ def check_authn():
         logger.debug('Authentication in process...')
         url = driver.current_url
         url = url.split('//')
-        print(url)
+        logger.debug(f'URL: {url}')
         url[1] = 'root:redhat@' + url[1]
         url = '//'.join(url)
         AUTHENT = True
@@ -372,6 +377,7 @@ def main():
                                                 
 
                     logger.debug('Returning to MAIN...')
+                    logger.debug(f'CURRENT TITLE: {driver.title} !!!')
                     goto(driver.title, MAIN_BTN_XPATH)
 
                     # THIS LOGIC IS NECESSARY ???
