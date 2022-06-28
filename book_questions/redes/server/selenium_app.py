@@ -399,9 +399,11 @@ def main():
         logger.info('The program finshed by USER.\nDONE.')
         driver.quit()
     except selenium_exception.NoSuchElementException as e:
-        logger.critical(f'\n------------------------------\nSomething went wrong with SELENIUM: {e}.\nRestarting the programming...\n------------------------------\n')
+        logger.critical('\n------------------------------\nSomething went wrong with SELENIUM.\nRestarting the programming...\n------------------------------\n')
+        logger.info(f'SELENIUM ERROR: {e}\n')
         main()
     except Exception as e:
-        logger.critical(f'\n------------------------------\nUnexpected error!.\nError: {e}\n------------------------------\n')
-
+        logger.critical(f'\n------------------------------\nUnexpected error!.\n------------------------------\n')
+        logger.info(f'Error: {e}\n')
+        main()
 main()

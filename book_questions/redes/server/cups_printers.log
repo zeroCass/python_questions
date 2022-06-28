@@ -1,0 +1,334 @@
+24/06/2022 11:33:13 - (levelerror: ERROR): Hostname:ubs06ta-1254895.saude.df.gov.br - Ping error: Command '['ping', 'ubs06ta-1254895.saude.df.gov.br']' returned non-zero exit status 1.
+24/06/2022 11:33:13 - (levelerror: WARNING): (Printer: CBCST06-8341954 ): Cancelling all jobs!
+24/06/2022 11:33:14 - (levelerror: WARNING): CBCST06-8341954 : all jobs cancelled.
+24/06/2022 12:21:22 - (levelerror: ERROR): (Printer: CBUBS16SSB): Release not sucessed, something is wrong.
+All jobs will be canceled
+24/06/2022 12:21:22 - (levelerror: WARNING): (Printer: CBUBS16SSB): Cancelling all jobs!
+24/06/2022 12:21:24 - (levelerror: ERROR): Release button NOT FOUND, exiting the fuction
+24/06/2022 12:25:59 - (levelerror: ERROR): (Printer: CBUBS16SSB): Release not sucessed, something is wrong.
+All jobs will be canceled
+24/06/2022 12:25:59 - (levelerror: WARNING): (Printer: CBUBS16SSB): Cancelling all jobs!
+24/06/2022 12:25:59 - (levelerror: ERROR): Release button NOT FOUND, exiting the fuction
+24/06/2022 12:29:03 - (levelerror: ERROR): (Printer: CBUBS16SSB): Release not sucessed, something is wrong.
+All jobs will be canceled
+24/06/2022 12:29:03 - (levelerror: WARNING): (Printer: CBUBS16SSB): Cancelling all jobs!
+24/06/2022 12:29:04 - (levelerror: ERROR): Release button NOT FOUND, exiting the fuction
+24/06/2022 14:35:31 - (levelerror: ERROR): (Printer: CBLacen7): Release not sucessed, something is wrong.
+All jobs will be canceled
+24/06/2022 14:35:31 - (levelerror: WARNING): (Printer: CBLacen7): Cancelling all jobs!
+24/06/2022 14:35:36 - (levelerror: ERROR): Release button NOT FOUND, exiting the fuction
+24/06/2022 14:56:09 - (levelerror: CRITICAL): 
+------------------------------
+Something went wrong with SELENIUM: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[2]/td[1]"}
+  (Session info: headless chrome=102.0.5005.63)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A6D953+2414931]
+	Ordinal0 [0x009FF5E1+1963489]
+	Ordinal0 [0x008EC6B8+837304]
+	Ordinal0 [0x00919500+1021184]
+	Ordinal0 [0x0091979B+1021851]
+	Ordinal0 [0x00946502+1205506]
+	Ordinal0 [0x009344E4+1131748]
+	Ordinal0 [0x00944812+1198098]
+	Ordinal0 [0x009342B6+1131190]
+	Ordinal0 [0x0090E860+976992]
+	Ordinal0 [0x0090F756+980822]
+	GetHandleVerifier [0x00CDCC62+2510274]
+	GetHandleVerifier [0x00CCF760+2455744]
+	GetHandleVerifier [0x00AFEABA+551962]
+	GetHandleVerifier [0x00AFD916+547446]
+	Ordinal0 [0x00A05F3B+1990459]
+	Ordinal0 [0x00A0A898+2009240]
+	Ordinal0 [0x00A0A985+2009477]
+	Ordinal0 [0x00A13AD1+2046673]
+	BaseThreadInitThunk [0x753BFA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77537A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77537A6E+238]
+.
+Restarting the programming...
+------------------------------
+
+24/06/2022 15:19:22 - (levelerror: ERROR): Hostname:UPAREC-PE04WSY3.ihb.local - Ping error: Command '['ping', 'UPAREC-PE04WSY3.ihb.local']' returned non-zero exit status 1.
+24/06/2022 15:19:22 - (levelerror: WARNING): (Printer: CBUPAREM-8343436 ): Cancelling all jobs!
+24/06/2022 15:19:23 - (levelerror: WARNING): CBUPAREM-8343436 : all jobs cancelled.
+24/06/2022 16:24:07 - (levelerror: ERROR): Hostname:CS02-GINE001.saude.df.gov.br - Ping error: Command '['ping', 'CS02-GINE001.saude.df.gov.br']' returned non-zero exit status 1.
+24/06/2022 16:24:07 - (levelerror: WARNING): (Printer: CBCSB16-8343870 ): Cancelling all jobs!
+24/06/2022 16:24:07 - (levelerror: WARNING): CBCSB16-8343870 : all jobs cancelled.
+24/06/2022 17:39:03 - (levelerror: ERROR): Hostname:10.85.31.18 - Ping error: Command '['ping', '10.85.31.18']' returned non-zero exit status 1.
+24/06/2022 17:39:03 - (levelerror: WARNING): (Printer: CBHRSM05-8344138 ): Cancelling all jobs!
+24/06/2022 17:39:05 - (levelerror: WARNING): CBHRSM05-8344138 : all jobs cancelled.
+25/06/2022 10:45:54 - (levelerror: ERROR): Hostname:HRG-CBHRGLAB.saude.df.gov.br - Ping error: Command '['ping', 'HRG-CBHRGLAB.saude.df.gov.br']' returned non-zero exit status 1.
+25/06/2022 10:45:55 - (levelerror: WARNING): (Printer: CBHRGLAB-8345880 ): Cancelling all jobs!
+25/06/2022 10:45:55 - (levelerror: WARNING): CBHRGLAB-8345880 : all jobs cancelled.
+25/06/2022 10:48:59 - (levelerror: ERROR): Hostname:HRG-CBHRGLAB.saude.df.gov.br - Ping error: Command '['ping', 'HRG-CBHRGLAB.saude.df.gov.br']' returned non-zero exit status 1.
+25/06/2022 10:48:59 - (levelerror: WARNING): (Printer: CBHRGLAB-8345899 ): Cancelling all jobs!
+25/06/2022 10:49:00 - (levelerror: WARNING): CBHRGLAB-8345899 : all jobs cancelled.
+25/06/2022 10:53:36 - (levelerror: ERROR): Hostname:HRG-CBHRGLAB.saude.df.gov.br - Ping error: Command '['ping', 'HRG-CBHRGLAB.saude.df.gov.br']' returned non-zero exit status 1.
+25/06/2022 10:53:37 - (levelerror: WARNING): (Printer: CBHRGLAB-8345919 ): Cancelling all jobs!
+25/06/2022 10:53:37 - (levelerror: WARNING): CBHRGLAB-8345919 : all jobs cancelled.
+25/06/2022 11:03:49 - (levelerror: ERROR): Hostname:HRG-CBHRGLAB.saude.df.gov.br - Ping error: Command '['ping', 'HRG-CBHRGLAB.saude.df.gov.br']' returned non-zero exit status 1.
+25/06/2022 11:03:49 - (levelerror: WARNING): (Printer: CBHRGLAB-8345958 ): Cancelling all jobs!
+25/06/2022 11:03:50 - (levelerror: WARNING): CBHRGLAB-8345958 : all jobs cancelled.
+26/06/2022 14:42:51 - (levelerror: ERROR): Hostname:svs-nrct-0100.saude.df.gov.br - Ping error: Command '['ping', 'svs-nrct-0100.saude.df.gov.br']' returned non-zero exit status 1.
+26/06/2022 14:42:51 - (levelerror: WARNING): (Printer: CBLacen1-8348969 ): Cancelling all jobs!
+26/06/2022 14:42:51 - (levelerror: WARNING): CBLacen1-8348969 : all jobs cancelled.
+27/06/2022 06:56:15 - (levelerror: ERROR): Hostname:hmib-lab-12.saude.df.gov.br - Ping error: Command '['ping', 'hmib-lab-12.saude.df.gov.br']' returned non-zero exit status 1.
+27/06/2022 06:56:15 - (levelerror: WARNING): (Printer: CBHRAS_MICRO-8350247 ): Cancelling all jobs!
+27/06/2022 06:56:16 - (levelerror: WARNING): CBHRAS_MICRO-8350247 : all jobs cancelled.
+27/06/2022 07:14:02 - (levelerror: ERROR): Hostname:CSSM2-1225036.saude.df.gov.br - Ping error: Command '['ping', 'CSSM2-1225036.saude.df.gov.br']' returned non-zero exit status 1.
+27/06/2022 07:14:07 - (levelerror: WARNING): (Printer: CBCSSM02-8350319 ): Cancelling all jobs!
+27/06/2022 07:14:08 - (levelerror: WARNING): CBCSSM02-8350319 : all jobs cancelled.
+27/06/2022 07:19:29 - (levelerror: ERROR): Hostname:CSSM2-1225036.saude.df.gov.br - Ping error: Command '['ping', 'CSSM2-1225036.saude.df.gov.br']' returned non-zero exit status 1.
+27/06/2022 07:19:34 - (levelerror: WARNING): (Printer: CBCSSM02-8350353 ): Cancelling all jobs!
+27/06/2022 07:19:35 - (levelerror: WARNING): CBCSSM02-8350353 : all jobs cancelled.
+27/06/2022 07:29:25 - (levelerror: ERROR): Hostname:CSSM2-1225036.saude.df.gov.br - Ping error: Command '['ping', 'CSSM2-1225036.saude.df.gov.br']' returned non-zero exit status 1.
+27/06/2022 07:29:30 - (levelerror: WARNING): (Printer: CBCSSM02-8350447 ): Cancelling all jobs!
+27/06/2022 07:29:30 - (levelerror: WARNING): CBCSSM02-8350447 : all jobs cancelled.
+27/06/2022 07:42:57 - (levelerror: ERROR): Hostname:CSSM2-1225036.saude.df.gov.br - Ping error: Command '['ping', 'CSSM2-1225036.saude.df.gov.br']' returned non-zero exit status 1.
+27/06/2022 07:43:02 - (levelerror: WARNING): (Printer: CBCSSM02-8350571 ): Cancelling all jobs!
+27/06/2022 07:43:03 - (levelerror: WARNING): CBCSSM02-8350571 : all jobs cancelled.
+27/06/2022 09:01:55 - (levelerror: ERROR): Hostname:IMPRESSORA_EM_MANUTENCAO.saude.df.gov.br - Ping error: Command '['ping', 'IMPRESSORA_EM_MANUTENCAO.saude.df.gov.br']' returned non-zero exit status 1.
+27/06/2022 09:02:01 - (levelerror: WARNING): (Printer: LABTRIAGEMHRBZ-8351567 ): Cancelling all jobs!
+27/06/2022 09:02:01 - (levelerror: WARNING): LABTRIAGEMHRBZ-8351567 : all jobs cancelled.
+27/06/2022 09:13:37 - (levelerror: ERROR): (Printer: UBS1SOB1): Release not sucessed, something is wrong.
+All jobs will be canceled
+27/06/2022 09:13:37 - (levelerror: WARNING): (Printer: UBS1SOB1): Cancelling all jobs!
+27/06/2022 09:13:40 - (levelerror: ERROR): Release button NOT FOUND, exiting the fuction
+27/06/2022 10:18:24 - (levelerror: ERROR): Hostname:pe01ayd6-sap1ln.saude.df.gov.br - Ping error: Command '['ping', 'pe01ayd6-sap1ln.saude.df.gov.br']' returned non-zero exit status 1.
+27/06/2022 10:18:29 - (levelerror: WARNING): (Printer: CBCSB10-8352670 ): Cancelling all jobs!
+27/06/2022 10:18:30 - (levelerror: WARNING): CBCSB10-8352670 : all jobs cancelled.
+27/06/2022 10:21:26 - (levelerror: ERROR): Hostname:pe01ayd6-sap1ln.saude.df.gov.br - Ping error: Command '['ping', 'pe01ayd6-sap1ln.saude.df.gov.br']' returned non-zero exit status 1.
+27/06/2022 10:21:32 - (levelerror: WARNING): (Printer: CBCSB10-8352711 ): Cancelling all jobs!
+27/06/2022 10:21:32 - (levelerror: WARNING): CBCSB10-8352711 : all jobs cancelled.
+27/06/2022 10:24:27 - (levelerror: ERROR): Hostname:pe01ayd6-sap1ln.saude.df.gov.br - Ping error: Command '['ping', 'pe01ayd6-sap1ln.saude.df.gov.br']' returned non-zero exit status 1.
+27/06/2022 10:24:32 - (levelerror: WARNING): (Printer: CBCSB10-8352764 ): Cancelling all jobs!
+27/06/2022 10:24:36 - (levelerror: WARNING): CBCSB10-8352764 : all jobs cancelled.
+27/06/2022 10:24:37 - (levelerror: CRITICAL): 
+------------------------------
+Something went wrong with SELENIUM: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[2]/td[1]"}
+  (Session info: headless chrome=102.0.5005.63)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A6D953+2414931]
+	Ordinal0 [0x009FF5E1+1963489]
+	Ordinal0 [0x008EC6B8+837304]
+	Ordinal0 [0x00919500+1021184]
+	Ordinal0 [0x0091979B+1021851]
+	Ordinal0 [0x00946502+1205506]
+	Ordinal0 [0x009344E4+1131748]
+	Ordinal0 [0x00944812+1198098]
+	Ordinal0 [0x009342B6+1131190]
+	Ordinal0 [0x0090E860+976992]
+	Ordinal0 [0x0090F756+980822]
+	GetHandleVerifier [0x00CDCC62+2510274]
+	GetHandleVerifier [0x00CCF760+2455744]
+	GetHandleVerifier [0x00AFEABA+551962]
+	GetHandleVerifier [0x00AFD916+547446]
+	Ordinal0 [0x00A05F3B+1990459]
+	Ordinal0 [0x00A0A898+2009240]
+	Ordinal0 [0x00A0A985+2009477]
+	Ordinal0 [0x00A13AD1+2046673]
+	BaseThreadInitThunk [0x753BFA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77537A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77537A6E+238]
+.
+Restarting the programming...
+------------------------------
+
+27/06/2022 11:03:14 - (levelerror: ERROR): Hostname:cblacen10.saude.df.gov.br - Ping error: Command '['ping', 'cblacen10.saude.df.gov.br']' returned non-zero exit status 1.
+27/06/2022 11:03:14 - (levelerror: WARNING): (Printer: CBLacen10-8353504 ): Cancelling all jobs!
+27/06/2022 11:03:17 - (levelerror: WARNING): CBLacen10-8353504 : all jobs cancelled.
+27/06/2022 11:11:56 - (levelerror: ERROR): Hostname:cblacen10.saude.df.gov.br - Ping error: Command '['ping', 'cblacen10.saude.df.gov.br']' returned non-zero exit status 1.
+27/06/2022 11:11:56 - (levelerror: WARNING): (Printer: CBLacen10-8353619 ): Cancelling all jobs!
+27/06/2022 11:11:57 - (levelerror: WARNING): CBLacen10-8353619 : all jobs cancelled.
+27/06/2022 11:11:57 - (levelerror: CRITICAL): 
+------------------------------
+Something went wrong with SELENIUM: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[2]/td[1]"}
+  (Session info: headless chrome=102.0.5005.63)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A6D953+2414931]
+	Ordinal0 [0x009FF5E1+1963489]
+	Ordinal0 [0x008EC6B8+837304]
+	Ordinal0 [0x00919500+1021184]
+	Ordinal0 [0x0091979B+1021851]
+	Ordinal0 [0x00946502+1205506]
+	Ordinal0 [0x009344E4+1131748]
+	Ordinal0 [0x00944812+1198098]
+	Ordinal0 [0x009342B6+1131190]
+	Ordinal0 [0x0090E860+976992]
+	Ordinal0 [0x0090F756+980822]
+	GetHandleVerifier [0x00CDCC62+2510274]
+	GetHandleVerifier [0x00CCF760+2455744]
+	GetHandleVerifier [0x00AFEABA+551962]
+	GetHandleVerifier [0x00AFD916+547446]
+	Ordinal0 [0x00A05F3B+1990459]
+	Ordinal0 [0x00A0A898+2009240]
+	Ordinal0 [0x00A0A985+2009477]
+	Ordinal0 [0x00A13AD1+2046673]
+	BaseThreadInitThunk [0x753BFA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77537A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77537A6E+238]
+.
+Restarting the programming...
+------------------------------
+
+27/06/2022 11:13:58 - (levelerror: ERROR): (Printer: UBS1SOB1): Release not sucessed, something is wrong.
+All jobs will be canceled
+27/06/2022 11:13:58 - (levelerror: WARNING): (Printer: UBS1SOB1): Cancelling all jobs!
+27/06/2022 11:13:59 - (levelerror: ERROR): Release button NOT FOUND, exiting the fuction
+27/06/2022 12:37:17 - (levelerror: ERROR): Hostname:cblacen10.saude.df.gov.br - Ping error: Command '['ping', 'cblacen10.saude.df.gov.br']' returned non-zero exit status 1.
+27/06/2022 12:37:17 - (levelerror: WARNING): (Printer: CBLacen10-8354378 ): Cancelling all jobs!
+27/06/2022 12:37:18 - (levelerror: WARNING): CBLacen10-8354378 : all jobs cancelled.
+27/06/2022 12:40:27 - (levelerror: ERROR): Hostname:lacen-912353.saude.df.gov.br - Ping error: Command '['ping', 'lacen-912353.saude.df.gov.br']' returned non-zero exit status 1.
+27/06/2022 12:40:27 - (levelerror: WARNING): (Printer: CBLacen6-8354395 ): Cancelling all jobs!
+27/06/2022 12:40:29 - (levelerror: WARNING): CBLacen6-8354395 : all jobs cancelled.
+27/06/2022 12:43:35 - (levelerror: ERROR): Hostname:lacen-912353.saude.df.gov.br - Ping error: Command '['ping', 'lacen-912353.saude.df.gov.br']' returned non-zero exit status 1.
+27/06/2022 12:43:35 - (levelerror: WARNING): (Printer: CBLacen6-8354414 ): Cancelling all jobs!
+27/06/2022 12:43:36 - (levelerror: WARNING): CBLacen6-8354414 : all jobs cancelled.
+27/06/2022 13:28:47 - (levelerror: ERROR): (Printer: CBLacen7): Release not sucessed, something is wrong.
+All jobs will be canceled
+27/06/2022 13:28:47 - (levelerror: WARNING): (Printer: CBLacen7): Cancelling all jobs!
+27/06/2022 13:28:47 - (levelerror: ERROR): Release button NOT FOUND, exiting the fuction
+27/06/2022 14:15:43 - (levelerror: ERROR): (Printer: CBLacen7): Release not sucessed, something is wrong.
+All jobs will be canceled
+27/06/2022 14:15:43 - (levelerror: WARNING): (Printer: CBLacen7): Cancelling all jobs!
+27/06/2022 14:15:45 - (levelerror: ERROR): Release button NOT FOUND, exiting the fuction
+27/06/2022 14:15:52 - (levelerror: CRITICAL): 
+------------------------------
+Something went wrong with SELENIUM: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[2]/td[1]"}
+  (Session info: headless chrome=102.0.5005.63)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A6D953+2414931]
+	Ordinal0 [0x009FF5E1+1963489]
+	Ordinal0 [0x008EC6B8+837304]
+	Ordinal0 [0x00919500+1021184]
+	Ordinal0 [0x0091979B+1021851]
+	Ordinal0 [0x00946502+1205506]
+	Ordinal0 [0x009344E4+1131748]
+	Ordinal0 [0x00944812+1198098]
+	Ordinal0 [0x009342B6+1131190]
+	Ordinal0 [0x0090E860+976992]
+	Ordinal0 [0x0090F756+980822]
+	GetHandleVerifier [0x00CDCC62+2510274]
+	GetHandleVerifier [0x00CCF760+2455744]
+	GetHandleVerifier [0x00AFEABA+551962]
+	GetHandleVerifier [0x00AFD916+547446]
+	Ordinal0 [0x00A05F3B+1990459]
+	Ordinal0 [0x00A0A898+2009240]
+	Ordinal0 [0x00A0A985+2009477]
+	Ordinal0 [0x00A13AD1+2046673]
+	BaseThreadInitThunk [0x753BFA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77537A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77537A6E+238]
+.
+Restarting the programming...
+------------------------------
+
+27/06/2022 14:20:34 - (levelerror: ERROR): (Printer: CBLacen7): Release not sucessed, something is wrong.
+All jobs will be canceled
+27/06/2022 14:20:34 - (levelerror: WARNING): (Printer: CBLacen7): Cancelling all jobs!
+27/06/2022 14:20:36 - (levelerror: ERROR): Release button NOT FOUND, exiting the fuction
+27/06/2022 14:20:41 - (levelerror: CRITICAL): 
+------------------------------
+Something went wrong with SELENIUM: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[2]/td[1]"}
+  (Session info: headless chrome=102.0.5005.63)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A6D953+2414931]
+	Ordinal0 [0x009FF5E1+1963489]
+	Ordinal0 [0x008EC6B8+837304]
+	Ordinal0 [0x00919500+1021184]
+	Ordinal0 [0x0091979B+1021851]
+	Ordinal0 [0x00946502+1205506]
+	Ordinal0 [0x009344E4+1131748]
+	Ordinal0 [0x00944812+1198098]
+	Ordinal0 [0x009342B6+1131190]
+	Ordinal0 [0x0090E860+976992]
+	Ordinal0 [0x0090F756+980822]
+	GetHandleVerifier [0x00CDCC62+2510274]
+	GetHandleVerifier [0x00CCF760+2455744]
+	GetHandleVerifier [0x00AFEABA+551962]
+	GetHandleVerifier [0x00AFD916+547446]
+	Ordinal0 [0x00A05F3B+1990459]
+	Ordinal0 [0x00A0A898+2009240]
+	Ordinal0 [0x00A0A985+2009477]
+	Ordinal0 [0x00A13AD1+2046673]
+	BaseThreadInitThunk [0x753BFA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77537A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77537A6E+238]
+.
+Restarting the programming...
+------------------------------
+
+27/06/2022 14:24:50 - (levelerror: ERROR): (Printer: CBLacen7): Release not sucessed, something is wrong.
+All jobs will be canceled
+27/06/2022 14:24:50 - (levelerror: WARNING): (Printer: CBLacen7): Cancelling all jobs!
+27/06/2022 14:24:56 - (levelerror: ERROR): Release button NOT FOUND, exiting the fuction
+27/06/2022 14:38:54 - (levelerror: ERROR): (Printer: CBLacen7): Release not sucessed, something is wrong.
+All jobs will be canceled
+27/06/2022 14:38:54 - (levelerror: WARNING): (Printer: CBLacen7): Cancelling all jobs!
+27/06/2022 14:38:55 - (levelerror: ERROR): Release button NOT FOUND, exiting the fuction
+27/06/2022 14:39:04 - (levelerror: CRITICAL): 
+------------------------------
+Something went wrong with SELENIUM: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/table/tbody/tr[1]/td/table[2]/tbody/tr[2]/td[1]"}
+  (Session info: headless chrome=102.0.5005.63)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A6D953+2414931]
+	Ordinal0 [0x009FF5E1+1963489]
+	Ordinal0 [0x008EC6B8+837304]
+	Ordinal0 [0x00919500+1021184]
+	Ordinal0 [0x0091979B+1021851]
+	Ordinal0 [0x00946502+1205506]
+	Ordinal0 [0x009344E4+1131748]
+	Ordinal0 [0x00944812+1198098]
+	Ordinal0 [0x009342B6+1131190]
+	Ordinal0 [0x0090E860+976992]
+	Ordinal0 [0x0090F756+980822]
+	GetHandleVerifier [0x00CDCC62+2510274]
+	GetHandleVerifier [0x00CCF760+2455744]
+	GetHandleVerifier [0x00AFEABA+551962]
+	GetHandleVerifier [0x00AFD916+547446]
+	Ordinal0 [0x00A05F3B+1990459]
+	Ordinal0 [0x00A0A898+2009240]
+	Ordinal0 [0x00A0A985+2009477]
+	Ordinal0 [0x00A13AD1+2046673]
+	BaseThreadInitThunk [0x753BFA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77537A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77537A6E+238]
+.
+Restarting the programming...
+------------------------------
+
+27/06/2022 14:40:17 - (levelerror: ERROR): Hostname:Lacen-912469.saude.df.gov.br - Ping error: Command '['ping', 'Lacen-912469.saude.df.gov.br']' returned non-zero exit status 1.
+27/06/2022 14:40:17 - (levelerror: WARNING): (Printer: CBLacen13-8355569 ): Cancelling all jobs!
+27/06/2022 14:40:18 - (levelerror: WARNING): CBLacen13-8355569 : all jobs cancelled.
+27/06/2022 15:17:51 - (levelerror: ERROR): Hostname:cblacen10.saude.df.gov.br - Ping error: Command '['ping', 'cblacen10.saude.df.gov.br']' returned non-zero exit status 1.
+27/06/2022 15:17:51 - (levelerror: WARNING): (Printer: CBLacen10-8356099 ): Cancelling all jobs!
+27/06/2022 15:17:53 - (levelerror: WARNING): CBLacen10-8356099 : all jobs cancelled.
+27/06/2022 15:21:00 - (levelerror: ERROR): Hostname:cblacen10.saude.df.gov.br - Ping error: Command '['ping', 'cblacen10.saude.df.gov.br']' returned non-zero exit status 1.
+27/06/2022 15:21:00 - (levelerror: WARNING): (Printer: CBLacen10-8356146 ): Cancelling all jobs!
+27/06/2022 15:21:00 - (levelerror: WARNING): CBLacen10-8356146 : all jobs cancelled.
+27/06/2022 15:37:26 - (levelerror: ERROR): Hostname:IMPRESSORA_EM_MANUTENCAO.saude.df.gov.br - Ping error: Command '['ping', 'IMPRESSORA_EM_MANUTENCAO.saude.df.gov.br']' returned non-zero exit status 1.
+27/06/2022 15:37:32 - (levelerror: WARNING): (Printer: LABTRIAGEMHRBZ-8356344 ): Cancelling all jobs!
+27/06/2022 15:37:33 - (levelerror: WARNING): LABTRIAGEMHRBZ-8356344 : all jobs cancelled.
+27/06/2022 19:35:02 - (levelerror: ERROR): Hostname:IMPRESSORA_EM_MANUTENCAO.saude.df.gov.br - Ping error: Command '['ping', 'IMPRESSORA_EM_MANUTENCAO.saude.df.gov.br']' returned non-zero exit status 1.
+27/06/2022 19:35:08 - (levelerror: WARNING): (Printer: LABTRIAGEMHRBZ-8357659 ): Cancelling all jobs!
+27/06/2022 19:35:11 - (levelerror: WARNING): LABTRIAGEMHRBZ-8357659 : all jobs cancelled.
+27/06/2022 20:17:06 - (levelerror: ERROR): Hostname:IMPRESSORA_EM_MANUTENCAO.saude.df.gov.br - Ping error: Command '['ping', 'IMPRESSORA_EM_MANUTENCAO.saude.df.gov.br']' returned non-zero exit status 1.
+27/06/2022 20:17:11 - (levelerror: WARNING): (Printer: LABTRIAGEMHRBZ-8357778 ): Cancelling all jobs!
+27/06/2022 20:17:13 - (levelerror: WARNING): LABTRIAGEMHRBZ-8357778 : all jobs cancelled.
+27/06/2022 22:47:25 - (levelerror: ERROR): Hostname:IMPRESSORA_EM_MANUTENCAO.saude.df.gov.br - Ping error: Command '['ping', 'IMPRESSORA_EM_MANUTENCAO.saude.df.gov.br']' returned non-zero exit status 1.
+27/06/2022 22:47:30 - (levelerror: WARNING): (Printer: LABTRIAGEMHRBZ-8358146 ): Cancelling all jobs!
+27/06/2022 22:47:31 - (levelerror: WARNING): LABTRIAGEMHRBZ-8358146 : all jobs cancelled.
+28/06/2022 07:45:16 - (levelerror: ERROR): (Printer: CBCST02): Release not sucessed, something is wrong.
+All jobs will be canceled
+28/06/2022 07:45:16 - (levelerror: WARNING): (Printer: CBCST02): Cancelling all jobs!
+28/06/2022 07:45:17 - (levelerror: ERROR): Release button NOT FOUND, exiting the fuction
+28/06/2022 09:25:58 - (levelerror: ERROR): (Printer: CBLacen7): Release not sucessed, something is wrong.
+All jobs will be canceled
+28/06/2022 09:25:58 - (levelerror: WARNING): (Printer: CBLacen7): Cancelling all jobs!
+28/06/2022 09:25:59 - (levelerror: ERROR): Release button NOT FOUND, exiting the fuction
