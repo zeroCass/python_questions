@@ -14,8 +14,6 @@ from logging_file import logger
 
 '''
 handle ping host inacessivel
-log to file ping, cancell e release jobs
-verificar sleep in relese jobs
 verificar logica no final do loop
 '''
 
@@ -73,18 +71,20 @@ def ping_printer(hostname, printer_name):
     try:
         subprocess.check_call(['ping', hostname], universal_newlines=True)
         logger.info('Ping sucessed. The host is ONLINE.')
-        while not printer_name in driver.title:
+        aux_timer = time.time()
+        while not printer_name in driver.title and time.time() - aux_timer < 10:
             time.sleep(1)
             logger.debug(f'ping_printer(function): sleeping until returns to printers page')
         return True
     except subprocess.CalledProcessError as error:
         logger.error(f'Hostname:{hostname} - Ping error: {error}')
-        while not printer_name in driver.title:
+        aux_timer = time.time()
+        while not printer_name in driver.title and time.time() - aux_timer < 10:
             time.sleep(1)
             logger.debug(f'ping_printer(function): sleeping until returns to printers page')
         return False
     
-
+    
 def release_jobs(printer_name):
     '''check if there is active jobs then:
     click on release jobs button and waits to return to the original page
@@ -134,8 +134,11 @@ def release_jobs(printer_name):
                         fail = True
                 # the loop waits for the process exit and back to the printer page to continue
                 logger.info('Sleeping until returns to the printers page')
-                while printer_name not in driver.title:
+                aux_timer = time.time()
+                while printer_name not in driver.title and time.time() - aux_timer < 10:
                     time.sleep(1)
+                    logger.debug('Sleeping...')
+                if time.time() - aux_timer >= 10: logger.warning('Release jobs fail for some reason...')
                 old_jobs_num = jobs_num
             except:
                 logger.info('Jobs number label not found.')
